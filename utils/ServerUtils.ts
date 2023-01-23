@@ -1,4 +1,3 @@
-import { createBetterSqlite3Adapter } from '@dossierhq/better-sqlite3';
 import type {
   AdminClient,
   ErrorType,
@@ -6,11 +5,12 @@ import type {
   PromiseResult,
   PublishedClient,
 } from '@dossierhq/core';
-import { createConsoleLogger, NoOpLogger, notOk, ok } from '@dossierhq/core';
+import { createConsoleLogger, notOk, ok } from '@dossierhq/core';
 import type { AuthorizationAdapter, Server } from '@dossierhq/server';
 import { createServer, NoneAndSubjectAuthorizationAdapter } from '@dossierhq/server';
-import BetterSqlite, { type Database } from 'better-sqlite3';
+import { createSqlite3Adapter } from '@dossierhq/sqlite3';
 import type { NextApiRequest } from 'next';
+import { Database } from 'sqlite3';
 import { DEFAULT_AUTH_KEYS } from '../config/AuthKeyConfig';
 
 let serverConnectionPromise: Promise<{ server: Server }> | null = null;
@@ -58,15 +58,15 @@ export async function getServerConnection(): Promise<{ server: Server }> {
 }
 
 async function createDatabaseAdapter(logger: Logger) {
-  const context = { logger: NoOpLogger };
+  const context = { logger };
   let database: Database;
   try {
-    database = new BetterSqlite('data/database.sqlite');
+    database = new Database('data/database.sqlite');
   } catch (error) {
-    return notOk.GenericUnexpectedException({ logger }, error);
+    return notOk.GenericUnexpectedException(context, error);
   }
 
-  const databaseAdapterResult = await createBetterSqlite3Adapter(context, database, {
+  const databaseAdapterResult = await createSqlite3Adapter(context, database, {
     migrate: true,
     fts: { version: 'fts5' },
     journalMode: 'wal',
