@@ -5,7 +5,7 @@ import { AppAdminDossierProvider } from '../../contexts/AppAdminDossierProvider'
 import { useUrlSearchParams } from '../../hooks/useUrlSearchParams';
 import { useWarningOnExit } from '../../hooks/useWarningOnExit';
 import { FrontendUrls } from '../../utils/FrontendUrls';
-import { NewNavBar } from '../NewNavbar/NewNavbar';
+import { Navbar } from '../Navbar/Navbar';
 
 export default function AdminEntityEditorPage(): JSX.Element {
   const { onUrlSearchParamsChange, urlSearchParams } = useUrlSearchParams();
@@ -26,7 +26,7 @@ export default function AdminEntityEditorPage(): JSX.Element {
         <title>Edit entities | {process.env.NEXT_PUBLIC_SITE_NAME}</title>
       </Head>
       <EntityEditorScreen
-        header={<NewNavBar current="admin-entities" />}
+        header={<Navbar current="admin-entities" />}
         urlSearchParams={urlSearchParams}
         onUrlSearchParamsChange={onUrlSearchParamsChange}
         onEditorHasChangesChange={setHasChanges}

@@ -6,7 +6,7 @@ import { useCallback } from 'react';
 import { AppAdminDossierProvider } from '../../contexts/AppAdminDossierProvider';
 import { useUrlSearchParams } from '../../hooks/useUrlSearchParams';
 import { FrontendUrls } from '../../utils/FrontendUrls';
-import { NewNavBar } from '../NewNavbar/NewNavbar';
+import { Navbar } from '../Navbar/Navbar';
 
 export default function AdminEntitiesListPage(): JSX.Element | null {
   const router = useRouter();
@@ -27,7 +27,7 @@ export default function AdminEntitiesListPage(): JSX.Element | null {
         <title>Entities | {process.env.NEXT_PUBLIC_SITE_NAME}</title>
       </Head>
       <AdminEntityListScreen
-        header={<NewNavBar current="admin-entities" />}
+        header={<Navbar current="admin-entities" />}
         urlSearchParams={urlSearchParams}
         onUrlSearchParamsChange={onUrlSearchParamsChange}
         onCreateEntity={handleCreateEntity}

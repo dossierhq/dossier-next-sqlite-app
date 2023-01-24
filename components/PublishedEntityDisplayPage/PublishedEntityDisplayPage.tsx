@@ -2,7 +2,7 @@ import { PublishedEntityDisplayScreen } from '@dossierhq/react-components';
 import Head from 'next/head';
 import { AppPublishedDossierProvider } from '../../contexts/AppPublishedDossierProvider';
 import { useUrlSearchParams } from '../../hooks/useUrlSearchParams';
-import { NewNavBar } from '../NewNavbar/NewNavbar';
+import { Navbar } from '../Navbar/Navbar';
 
 export default function PublishedEntityDetailPage(): JSX.Element | null {
   const { onUrlSearchParamsChange, urlSearchParams } = useUrlSearchParams();
@@ -13,7 +13,7 @@ export default function PublishedEntityDetailPage(): JSX.Element | null {
         <title>Published entities | {process.env.NEXT_PUBLIC_SITE_NAME}</title>
       </Head>
       <PublishedEntityDisplayScreen
-        header={<NewNavBar current="published-entities" />}
+        header={<Navbar current="published-entities" />}
         urlSearchParams={urlSearchParams}
         onUrlSearchParamsChange={onUrlSearchParamsChange}
       />

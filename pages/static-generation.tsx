@@ -3,7 +3,7 @@ import { FullscreenContainer } from '@dossierhq/design';
 import type { GetStaticProps } from 'next';
 import Head from 'next/head';
 import { EntitySampleDisplay } from '../components/EntitySampleDisplay/EntitySampleDisplay';
-import { NewNavBar } from '../components/NewNavbar/NewNavbar';
+import { Navbar } from '../components/Navbar/Navbar';
 import { getPublishedClientForServerComponent } from '../utils/ServerComponentUtils';
 
 interface Props {
@@ -22,7 +22,7 @@ export default function StaticGenerationPage({ sampleResultJson }: Props): JSX.E
       </Head>
       <FullscreenContainer>
         <FullscreenContainer.Row fullWidth>
-          <NewNavBar current="ssg" />
+          <Navbar current="ssg" />
         </FullscreenContainer.Row>
         <FullscreenContainer.Row>
           <h1>Welcome to {process.env.NEXT_PUBLIC_SITE_NAME}</h1>

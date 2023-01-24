@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { ENABLE_WEB_INTERFACE } from '../../config/WebInterfaceConfig';
 import { FrontendUrls } from '../../utils/FrontendUrls';
-import styles from './NewNavbar.module.css';
+import styles from './Navbar.module.css';
 
 interface Props {
   current: Item['id'];
@@ -55,7 +55,7 @@ const items: Item[] = [
   ...(ENABLE_WEB_INTERFACE ? webInterfaceItems : []),
 ];
 
-export function NewNavBar({ current }: Props) {
+export function Navbar({ current }: Props) {
   return (
     <nav className={styles.navbar}>
       <ul>

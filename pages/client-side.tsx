@@ -3,7 +3,7 @@ import { FullscreenContainer } from '@dossierhq/design';
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import { EntitySampleDisplay } from '../components/EntitySampleDisplay/EntitySampleDisplay';
-import { NewNavBar } from '../components/NewNavbar/NewNavbar';
+import { Navbar } from '../components/Navbar/Navbar';
 import { usePublishedClient } from '../hooks/usePublishedClient';
 
 export default function ClientSidePage(): JSX.Element {
@@ -24,7 +24,7 @@ export default function ClientSidePage(): JSX.Element {
       </Head>
       <FullscreenContainer>
         <FullscreenContainer.Row fullWidth>
-          <NewNavBar current="csr" />
+          <Navbar current="csr" />
         </FullscreenContainer.Row>
         <FullscreenContainer.Row>
           <h1>Welcome to {process.env.NEXT_PUBLIC_SITE_NAME}</h1>

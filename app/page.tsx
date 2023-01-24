@@ -1,5 +1,5 @@
 import { EntitySampleDisplay } from '../components/EntitySampleDisplay/EntitySampleDisplay';
-import { NewNavBar } from '../components/NewNavbar/NewNavbar';
+import { Navbar } from '../components/Navbar/Navbar';
 import { getPublishedClientForServerComponent } from '../utils/ServerComponentUtils';
 
 export default async function Page() {
@@ -7,7 +7,7 @@ export default async function Page() {
   const sampleResult = await publishedClient.sampleEntities({}, { count: 5 });
   return (
     <>
-      <NewNavBar current="home" />
+      <Navbar current="home" />
       <h1>Welcome to {process.env.NEXT_PUBLIC_SITE_NAME}</h1>
       <p>
         This page is rendered server side using the <code>app</code> directory.
