@@ -34,4 +34,6 @@ yarn-error.log*
 .vercel
 
 #
-tsconfig.tsbuildinfo
+/types/SchemaTypes.ts
+/next-env.d.ts
+/tsconfig.tsbuildinfo

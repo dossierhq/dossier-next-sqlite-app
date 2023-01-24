@@ -10,8 +10,21 @@ import type { AuthorizationAdapter, Server } from '@dossierhq/server';
 import { createServer, NoneAndSubjectAuthorizationAdapter } from '@dossierhq/server';
 import { createSqlite3Adapter } from '@dossierhq/sqlite3';
 import type { NextApiRequest } from 'next';
-import { Database } from 'sqlite3';
-import { SYSTEM_USERS } from '../config/SystemUsers';
+import type { Database } from 'sqlite3';
+import * as Sqlite from 'sqlite3';
+
+// TODO @types/sqlite is slightly wrong in terms of CommonJS/ESM export
+const { Database: SqliteDatabase } = (Sqlite as unknown as { default: typeof Sqlite }).default;
+
+const DEFAULT_AUTH_KEYS = ['none', 'subject'];
+
+export const SYSTEM_USERS = {
+  anonymous: {
+    provider: 'sys',
+    identifier: 'anonymous',
+    defaultAuthKeys: DEFAULT_AUTH_KEYS,
+  },
+} as const;
 
 let serverConnectionPromise: Promise<{ server: Server }> | null = null;
 const logger = createConsoleLogger(console);
@@ -44,6 +57,7 @@ export async function getServerConnection(): Promise<{ server: Server }> {
         await createServer({
           databaseAdapter,
           authorizationAdapter: createAuthenticationAdapter(),
+          logger,
         })
       ).valueOrThrow();
       return { server };
@@ -57,7 +71,7 @@ async function createDatabaseAdapter(logger: Logger) {
   const context = { logger };
   let database: Database;
   try {
-    database = new Database('data/database.sqlite');
+    database = new SqliteDatabase('data/database.sqlite');
   } catch (error) {
     return notOk.GenericUnexpectedException(context, error);
   }

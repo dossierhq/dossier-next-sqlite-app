@@ -5,10 +5,11 @@
   "type": "module",
   "license": "MIT",
   "scripts": {
-    "build": "npm run prettier:check && npm run eslint:check && next build",
+    "build": "npm run generate:typescript && npm run prettier:check && npm run eslint:check && next build",
     "clean": "rm -rf .next/",
     "eslint:check": "eslint .",
     "eslint:fix": "eslint --fix .",
+    "generate:typescript": "./generate-typescript.ts",
     "prettier:check": "prettier --check .",
     "prettier:fix": "prettier --write .",
     "start": "next dev",
@@ -21,6 +22,7 @@
     "@dossierhq/react-components": "0.1.49",
     "@dossierhq/server": "0.1.49",
     "@dossierhq/sqlite3": "0.1.49",
+    "@dossierhq/typescript-generator": "0.1.49",
     "leaflet": "~1.9.3",
     "next": "~13.1.0",
     "react": "~18.2.0",
@@ -34,6 +36,7 @@
     "eslint": "~8.32.0",
     "eslint-config-next": "~13.1.0",
     "prettier": "2.8.3",
+    "ts-node": "^10.9.1",
     "typescript": "~4.9.4"
   }
 }

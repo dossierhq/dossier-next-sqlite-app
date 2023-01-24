@@ -1,6 +1,5 @@
 import type { PublishedClient } from '@dossierhq/core';
-import { SYSTEM_USERS } from '../config/SystemUsers';
-import { getServerConnection } from './ServerUtils';
+import { getServerConnection, SYSTEM_USERS } from './ServerUtils';
 
 let publishedClientPromise: Promise<PublishedClient> | null = null;
 
