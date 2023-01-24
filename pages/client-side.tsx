@@ -6,7 +6,7 @@ import { EntitySampleDisplay } from '../components/EntitySampleDisplay/EntitySam
 import { NavBar } from '../components/NavBar/NavBar';
 import { usePublishedClient } from '../hooks/usePublishedClient';
 
-export default function Home(): JSX.Element {
+export default function ClientSidePage(): JSX.Element {
   const publishedClient = usePublishedClient();
   const [sampleResult, setSampleResult] = useState<Result<
     EntitySamplingPayload<PublishedEntity>,
