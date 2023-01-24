@@ -1,6 +1,6 @@
 import { convertJsonPublishedClientResult, convertJsonResult } from '@dossierhq/core';
 import { FullscreenContainer } from '@dossierhq/design';
-import type { GetServerSideProps } from 'next';
+import type { GetStaticProps } from 'next';
 import Head from 'next/head';
 import { EntitySampleDisplay } from '../components/EntitySampleDisplay/EntitySampleDisplay';
 import { NavBar } from '../components/NavBar/NavBar';
@@ -10,7 +10,7 @@ interface Props {
   sampleResultJson: string;
 }
 
-export default function ServerSidePage({ sampleResultJson }: Props): JSX.Element {
+export default function StaticGenerationPage({ sampleResultJson }: Props): JSX.Element {
   const sampleResult = convertJsonPublishedClientResult(
     'sampleEntities',
     convertJsonResult(JSON.parse(sampleResultJson))
@@ -33,7 +33,7 @@ export default function ServerSidePage({ sampleResultJson }: Props): JSX.Element
   );
 }
 
-export const getServerSideProps: GetServerSideProps<Props> = async (_context) => {
+export const getStaticProps: GetStaticProps<Props> = async (_context) => {
   const publishedClient = await getPublishedClientForServerComponent();
   const sampleResult = await publishedClient.sampleEntities({}, { count: 5 });
   return { props: { sampleResultJson: JSON.stringify(sampleResult) } };
