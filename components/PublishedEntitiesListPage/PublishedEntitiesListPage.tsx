@@ -6,7 +6,7 @@ import { useCallback } from 'react';
 import { AppPublishedDossierProvider } from '../../contexts/AppPublishedDossierProvider';
 import { useUrlSearchParams } from '../../hooks/useUrlSearchParams';
 import { FrontendUrls } from '../../utils/FrontendUrls';
-import { NavBar } from '../NavBar/NavBar';
+import { NewNavBar } from '../NewNavbar/NewNavbar';
 
 export default function PublishedEntitiesListPage(): JSX.Element | null {
   const router = useRouter();
@@ -23,7 +23,7 @@ export default function PublishedEntitiesListPage(): JSX.Element | null {
         <title>Published entities | {process.env.NEXT_PUBLIC_SITE_NAME}</title>
       </Head>
       <PublishedEntityListScreen
-        header={<NavBar current="published-entities" />}
+        header={<NewNavBar current="published-entities" />}
         urlSearchParams={urlSearchParams}
         onUrlSearchParamsChange={onUrlSearchParamsChange}
         onOpenEntity={handleEntityOpen}

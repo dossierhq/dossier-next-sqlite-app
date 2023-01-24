@@ -10,4 +10,6 @@ export const FrontendUrls = {
     `/dossier/published-entities/display?id=${ids.join('&id=')}`,
   schemaEditor: '/dossier/schema',
   clientSide: '/client-side',
+  serverSide: '/server-side',
+  static: '/static-generation',
 };

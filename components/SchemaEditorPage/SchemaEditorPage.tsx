@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { useState } from 'react';
 import { AppAdminDossierProvider } from '../../contexts/AppAdminDossierProvider';
 import { useWarningOnExit } from '../../hooks/useWarningOnExit';
-import { NavBar } from '../NavBar/NavBar';
+import { NewNavBar } from '../NewNavbar/NewNavbar';
 
 export default function SchemaEditorPage() {
   const [hasChanges, setHasChanges] = useState(false);
@@ -19,7 +19,7 @@ export default function SchemaEditorPage() {
         <title>Schema | {process.env.NEXT_PUBLIC_SITE_NAME}</title>
       </Head>
       <SchemaEditorScreen
-        header={<NavBar current="schema" />}
+        header={<NewNavBar current="schema" />}
         onEditorHasChangesChange={setHasChanges}
       />
     </AppAdminDossierProvider>
