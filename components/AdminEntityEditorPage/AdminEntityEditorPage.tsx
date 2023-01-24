@@ -4,7 +4,7 @@ import { useMemo, useState } from 'react';
 import { AppAdminDossierProvider } from '../../contexts/AppAdminDossierProvider';
 import { useUrlSearchParams } from '../../hooks/useUrlSearchParams';
 import { useWarningOnExit } from '../../hooks/useWarningOnExit';
-import { BrowserUrls } from '../../utils/BrowserUrls';
+import { FrontendUrls } from '../../utils/FrontendUrls';
 import { NavBar } from '../NavBar/NavBar';
 
 export default function AdminEntityEditorPage(): JSX.Element {
@@ -14,7 +14,7 @@ export default function AdminEntityEditorPage(): JSX.Element {
   const shouldWarn = useMemo(() => {
     if (!hasChanges) return false;
     return (_fromUrl: string, toUrl: string) => {
-      return !BrowserUrls.isEditPage(toUrl);
+      return !FrontendUrls.isEditPage(toUrl);
     };
   }, [hasChanges]);
 

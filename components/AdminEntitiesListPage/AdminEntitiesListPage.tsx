@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { useCallback } from 'react';
 import { AppAdminDossierProvider } from '../../contexts/AppAdminDossierProvider';
 import { useUrlSearchParams } from '../../hooks/useUrlSearchParams';
-import { BrowserUrls } from '../../utils/BrowserUrls';
+import { FrontendUrls } from '../../utils/FrontendUrls';
 import { NavBar } from '../NavBar/NavBar';
 
 export default function AdminEntitiesListPage(): JSX.Element | null {
@@ -13,11 +13,11 @@ export default function AdminEntitiesListPage(): JSX.Element | null {
   const { onUrlSearchParamsChange, urlSearchParams } = useUrlSearchParams();
 
   const handleCreateEntity = useCallback(
-    (type: string) => router.push(BrowserUrls.editPageNew(type, crypto.randomUUID())),
+    (type: string) => router.push(FrontendUrls.editPageNew(type, crypto.randomUUID())),
     [router]
   );
   const handleEntityOpen = useCallback(
-    (entity: AdminEntity) => router.push(BrowserUrls.editPage([entity.id])),
+    (entity: AdminEntity) => router.push(FrontendUrls.editPage([entity.id])),
     [router]
   );
 

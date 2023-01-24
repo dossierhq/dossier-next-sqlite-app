@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { useCallback } from 'react';
 import { AppPublishedDossierProvider } from '../../contexts/AppPublishedDossierProvider';
 import { useUrlSearchParams } from '../../hooks/useUrlSearchParams';
-import { BrowserUrls } from '../../utils/BrowserUrls';
+import { FrontendUrls } from '../../utils/FrontendUrls';
 import { NavBar } from '../NavBar/NavBar';
 
 export default function PublishedEntitiesListPage(): JSX.Element | null {
@@ -13,7 +13,7 @@ export default function PublishedEntitiesListPage(): JSX.Element | null {
   const { onUrlSearchParamsChange, urlSearchParams } = useUrlSearchParams();
 
   const handleEntityOpen = useCallback(
-    (entity: PublishedEntity) => router.push(BrowserUrls.publishedEntityDisplay([entity.id])),
+    (entity: PublishedEntity) => router.push(FrontendUrls.publishedEntityDisplay([entity.id])),
     [router]
   );
 

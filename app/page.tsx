@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { EntitySampleDisplay } from '../components/EntitySampleDisplay/EntitySampleDisplay';
+import { FrontendUrls } from '../utils/FrontendUrls';
 import { getPublishedClientForServerComponent } from '../utils/ServerComponentUtils';
 
 export default async function Page() {
@@ -15,7 +16,8 @@ export default async function Page() {
       <hr />
       <ul>
         <li>
-          Go to <Link href="/client-side">client-side</Link> to see how to render client side
+          Go to <Link href={FrontendUrls.clientSide}>client-side</Link> to see how to render client
+          side
         </li>
       </ul>
     </>
