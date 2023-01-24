@@ -1,9 +1,3 @@
-import type { ClientContext, PublishedClient, PublishedClientOperation } from '@dossierhq/core';
-import {
-  convertJsonPublishedClientResult,
-  createBasePublishedClient,
-  createConsoleLogger,
-} from '@dossierhq/core';
 import type {
   FieldDisplayProps,
   PublishedDossierContextAdapter,
@@ -12,12 +6,7 @@ import type {
 import { PublishedDossierProvider } from '@dossierhq/react-components';
 import { useMemo } from 'react';
 import { DISPLAY_AUTH_KEYS } from '../config/AuthKeyConfig';
-import { BackendUrls } from '../utils/BackendUrls';
-import { fetchJsonResult } from '../utils/BackendUtils';
-
-type BackendContext = ClientContext;
-
-const logger = createConsoleLogger(console);
+import { usePublishedClient } from '../hooks/usePublishedClient';
 
 class PublishedContextAdapter implements PublishedDossierContextAdapter {
   renderPublishedFieldDisplay(_props: FieldDisplayProps): JSX.Element | null {
@@ -32,38 +21,15 @@ class PublishedContextAdapter implements PublishedDossierContextAdapter {
 }
 
 export function AppPublishedDossierProvider({ children }: { children: React.ReactNode }) {
+  const publishedClient = usePublishedClient();
   const args = useMemo(
     () => ({
-      publishedClient: createBackendPublishedClient(),
+      publishedClient,
       adapter: new PublishedContextAdapter(),
       authKeys: DISPLAY_AUTH_KEYS,
     }),
-    []
+    [publishedClient]
   );
 
-  const { publishedClient } = args;
-  if (!publishedClient) {
-    return null;
-  }
-  return (
-    <PublishedDossierProvider {...args} publishedClient={publishedClient}>
-      {children}
-    </PublishedDossierProvider>
-  );
-}
-
-function createBackendPublishedClient(): PublishedClient {
-  const context: BackendContext = { logger };
-  return createBasePublishedClient({ context, pipeline: [terminatingPublishedMiddleware] });
-}
-
-async function terminatingPublishedMiddleware(
-  context: BackendContext,
-  operation: PublishedClientOperation
-): Promise<void> {
-  const result = await fetchJsonResult(
-    context,
-    BackendUrls.published(operation.name, operation.args)
-  );
-  operation.resolve(convertJsonPublishedClientResult(operation.name, result));
+  return <PublishedDossierProvider {...args}>{children}</PublishedDossierProvider>;
 }

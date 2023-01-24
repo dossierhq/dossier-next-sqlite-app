@@ -11,7 +11,7 @@ import { createServer, NoneAndSubjectAuthorizationAdapter } from '@dossierhq/ser
 import { createSqlite3Adapter } from '@dossierhq/sqlite3';
 import type { NextApiRequest } from 'next';
 import { Database } from 'sqlite3';
-import { DEFAULT_AUTH_KEYS } from '../config/AuthKeyConfig';
+import { SYSTEM_USERS } from '../config/SystemUsers';
 
 let serverConnectionPromise: Promise<{ server: Server }> | null = null;
 const logger = createConsoleLogger(console);
@@ -24,11 +24,7 @@ export async function getSessionContextForRequest(
   typeof ErrorType.NotAuthenticated
 > {
   //TODO actually authenticate
-  const sessionResult = await server.createSession({
-    provider: 'test',
-    identifier: 'john-smith',
-    defaultAuthKeys: DEFAULT_AUTH_KEYS,
-  });
+  const sessionResult = await server.createSession(SYSTEM_USERS.anonymous);
   if (sessionResult.isError()) {
     return notOk.NotAuthenticated(
       `Failed authentication: ${sessionResult.error}: ${sessionResult.message}`
