@@ -37,3 +37,4 @@ yarn-error.log*
 /types/SchemaTypes.ts
 /next-env.d.ts
 /tsconfig.tsbuildinfo
+*.sqlite-shm
