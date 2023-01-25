@@ -9,7 +9,7 @@
     "clean": "rm -rf .next/",
     "eslint:check": "eslint .",
     "eslint:fix": "eslint --fix .",
-    "generate:typescript": "./generate-typescript.ts",
+    "generate:typescript": "ts-node-esm ./generate-typescript.ts",
     "prettier:check": "prettier --check .",
     "prettier:fix": "prettier --write .",
     "start": "next dev",
