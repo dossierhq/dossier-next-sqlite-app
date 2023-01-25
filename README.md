@@ -3,6 +3,11 @@
 This is a template for an app using [Dossier](https://dossierhq.dev/), [Next.js](https://nextjs.org/)
 and [SQLite](https://www.sqlite.org/).
 
+In order to keep things as simple as possible, this template doesn't have any auth. I.e. there no
+need to login and all users use the same anonymous user. In order to protect the data, in production
+(`npm run start:production`) only read-only published content can be accessed, and the Dossier web
+interface is disabled.
+
 > **Warning**
 > When deploying to Netlify or Vercel you will only be able to use Dossier at build-time, since
 > Next.js cloud functions don't support opening SQLite databases in run-time. Running locally, or in
