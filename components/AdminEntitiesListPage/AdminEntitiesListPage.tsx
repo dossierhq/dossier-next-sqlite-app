@@ -6,6 +6,7 @@ import { useCallback } from 'react';
 import { AppAdminDossierProvider } from '../../contexts/AppAdminDossierProvider';
 import { useUrlSearchParams } from '../../hooks/useUrlSearchParams';
 import { FrontendUrls } from '../../utils/FrontendUrls';
+import { DossierWebInterfacePage } from '../DossierWebInterfacePage/DossierWebInterfacePage';
 import { Navbar } from '../Navbar/Navbar';
 
 export default function AdminEntitiesListPage(): JSX.Element | null {
@@ -22,17 +23,19 @@ export default function AdminEntitiesListPage(): JSX.Element | null {
   );
 
   return (
-    <AppAdminDossierProvider>
-      <Head>
-        <title>Entities | {process.env.NEXT_PUBLIC_SITE_NAME}</title>
-      </Head>
-      <AdminEntityListScreen
-        header={<Navbar current="admin-entities" />}
-        urlSearchParams={urlSearchParams}
-        onUrlSearchParamsChange={onUrlSearchParamsChange}
-        onCreateEntity={handleCreateEntity}
-        onOpenEntity={handleEntityOpen}
-      />
-    </AppAdminDossierProvider>
+    <DossierWebInterfacePage>
+      <AppAdminDossierProvider>
+        <Head>
+          <title>Entities | {process.env.NEXT_PUBLIC_SITE_NAME}</title>
+        </Head>
+        <AdminEntityListScreen
+          header={<Navbar current="admin-entities" />}
+          urlSearchParams={urlSearchParams}
+          onUrlSearchParamsChange={onUrlSearchParamsChange}
+          onCreateEntity={handleCreateEntity}
+          onOpenEntity={handleEntityOpen}
+        />
+      </AppAdminDossierProvider>
+    </DossierWebInterfacePage>
   );
 }

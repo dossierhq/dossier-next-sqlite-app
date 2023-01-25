@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { useState } from 'react';
 import { AppAdminDossierProvider } from '../../contexts/AppAdminDossierProvider';
 import { useWarningOnExit } from '../../hooks/useWarningOnExit';
+import { DossierWebInterfacePage } from '../DossierWebInterfacePage/DossierWebInterfacePage';
 import { Navbar } from '../Navbar/Navbar';
 
 export default function SchemaEditorPage() {
@@ -14,14 +15,16 @@ export default function SchemaEditorPage() {
   );
 
   return (
-    <AppAdminDossierProvider>
-      <Head>
-        <title>Schema | {process.env.NEXT_PUBLIC_SITE_NAME}</title>
-      </Head>
-      <SchemaEditorScreen
-        header={<Navbar current="schema" />}
-        onEditorHasChangesChange={setHasChanges}
-      />
-    </AppAdminDossierProvider>
+    <DossierWebInterfacePage>
+      <AppAdminDossierProvider>
+        <Head>
+          <title>Schema | {process.env.NEXT_PUBLIC_SITE_NAME}</title>
+        </Head>
+        <SchemaEditorScreen
+          header={<Navbar current="schema" />}
+          onEditorHasChangesChange={setHasChanges}
+        />
+      </AppAdminDossierProvider>
+    </DossierWebInterfacePage>
   );
 }

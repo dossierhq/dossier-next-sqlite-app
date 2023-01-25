@@ -1,0 +1,9 @@
+.paragraph {
+  margin: 0;
+}
+
+.list {
+  list-style: square;
+  margin: 0;
+  padding: 0;
+}

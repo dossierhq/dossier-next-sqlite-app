@@ -1,5 +1,6 @@
 import { EntitySampleDisplay } from '../components/EntitySampleDisplay/EntitySampleDisplay';
 import { Navbar } from '../components/Navbar/Navbar';
+import styles from '../styles/info-page.module.css';
 import { getPublishedClientForServerComponent } from '../utils/ServerComponentUtils';
 
 export default async function Page() {
@@ -8,11 +9,10 @@ export default async function Page() {
   return (
     <>
       <Navbar current="home" />
-      <h1>Welcome to {process.env.NEXT_PUBLIC_SITE_NAME}</h1>
-      <p>
-        This page is rendered server side using the <code>app</code> directory.
-      </p>
-      <EntitySampleDisplay sampleResult={sampleResult} />
+      <section className={styles.container}>
+        <h1 className={styles.header}>Using Dossier in Server Component (app/ directory)</h1>
+        <EntitySampleDisplay sampleResult={sampleResult} />
+      </section>
     </>
   );
 }

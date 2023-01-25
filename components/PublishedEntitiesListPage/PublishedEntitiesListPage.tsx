@@ -6,6 +6,7 @@ import { useCallback } from 'react';
 import { AppPublishedDossierProvider } from '../../contexts/AppPublishedDossierProvider';
 import { useUrlSearchParams } from '../../hooks/useUrlSearchParams';
 import { FrontendUrls } from '../../utils/FrontendUrls';
+import { DossierWebInterfacePage } from '../DossierWebInterfacePage/DossierWebInterfacePage';
 import { Navbar } from '../Navbar/Navbar';
 
 export default function PublishedEntitiesListPage(): JSX.Element | null {
@@ -18,16 +19,18 @@ export default function PublishedEntitiesListPage(): JSX.Element | null {
   );
 
   return (
-    <AppPublishedDossierProvider>
-      <Head>
-        <title>Published entities | {process.env.NEXT_PUBLIC_SITE_NAME}</title>
-      </Head>
-      <PublishedEntityListScreen
-        header={<Navbar current="published-entities" />}
-        urlSearchParams={urlSearchParams}
-        onUrlSearchParamsChange={onUrlSearchParamsChange}
-        onOpenEntity={handleEntityOpen}
-      />
-    </AppPublishedDossierProvider>
+    <DossierWebInterfacePage>
+      <AppPublishedDossierProvider>
+        <Head>
+          <title>Published entities | {process.env.NEXT_PUBLIC_SITE_NAME}</title>
+        </Head>
+        <PublishedEntityListScreen
+          header={<Navbar current="published-entities" />}
+          urlSearchParams={urlSearchParams}
+          onUrlSearchParamsChange={onUrlSearchParamsChange}
+          onOpenEntity={handleEntityOpen}
+        />
+      </AppPublishedDossierProvider>
+    </DossierWebInterfacePage>
   );
 }

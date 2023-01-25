@@ -1,9 +1,9 @@
 import { convertJsonPublishedClientResult, convertJsonResult } from '@dossierhq/core';
-import { FullscreenContainer } from '@dossierhq/design';
 import type { GetStaticProps } from 'next';
 import Head from 'next/head';
 import { EntitySampleDisplay } from '../components/EntitySampleDisplay/EntitySampleDisplay';
 import { Navbar } from '../components/Navbar/Navbar';
+import styles from '../styles/info-page.module.css';
 import { getPublishedClientForServerComponent } from '../utils/ServerComponentUtils';
 
 interface Props {
@@ -20,15 +20,11 @@ export default function StaticGenerationPage({ sampleResultJson }: Props): JSX.E
       <Head>
         <title>{process.env.NEXT_PUBLIC_SITE_NAME}</title>
       </Head>
-      <FullscreenContainer>
-        <FullscreenContainer.Row fullWidth>
-          <Navbar current="ssg" />
-        </FullscreenContainer.Row>
-        <FullscreenContainer.Row>
-          <h1>Welcome to {process.env.NEXT_PUBLIC_SITE_NAME}</h1>
-          {sampleResult && <EntitySampleDisplay sampleResult={sampleResult} />}
-        </FullscreenContainer.Row>
-      </FullscreenContainer>
+      <Navbar current="ssg" />
+      <section className={styles.container}>
+        <h1 className={styles.header}>Using Dossier in Static Site Generation (SSG)</h1>
+        <EntitySampleDisplay sampleResult={sampleResult} />
+      </section>
     </>
   );
 }

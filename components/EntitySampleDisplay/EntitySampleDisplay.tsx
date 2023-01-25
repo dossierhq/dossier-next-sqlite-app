@@ -1,4 +1,5 @@
 import type { EntitySamplingPayload, ErrorType, PublishedEntity, Result } from '@dossierhq/core';
+import styles from './EntitySampleDisplay.module.css';
 
 interface Props {
   sampleResult: Result<EntitySamplingPayload<PublishedEntity>, ErrorType>;
@@ -7,7 +8,7 @@ interface Props {
 export function EntitySampleDisplay({ sampleResult }: Props) {
   if (sampleResult.isError()) {
     return (
-      <p>
+      <p className={styles.paragraph}>
         Failed fetching entities: {sampleResult.error}: {sampleResult.message}
       </p>
     );
@@ -15,12 +16,20 @@ export function EntitySampleDisplay({ sampleResult }: Props) {
 
   return (
     <>
-      <p>Total entity count: {sampleResult.value.totalCount}</p>
+      <p className={styles.paragraph}>
+        Total entity count: {sampleResult.value.totalCount}
+        {sampleResult.value.items.length > 0 ? (
+          <>
+            <br />
+            {sampleResult.value.items.length} sample entities:
+          </>
+        ) : null}
+      </p>
       {sampleResult.value.items.length > 0 ? (
-        <ul>
+        <ul className={styles.list}>
           {sampleResult.value.items.map((entity) => (
             <li key={entity.id}>
-              {entity.info.type}: {entity.info.name}
+              Type: {entity.info.type}, id: {entity.id}, name: {entity.info.name}
             </li>
           ))}
         </ul>

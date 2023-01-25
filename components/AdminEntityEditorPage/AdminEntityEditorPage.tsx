@@ -5,6 +5,7 @@ import { AppAdminDossierProvider } from '../../contexts/AppAdminDossierProvider'
 import { useUrlSearchParams } from '../../hooks/useUrlSearchParams';
 import { useWarningOnExit } from '../../hooks/useWarningOnExit';
 import { FrontendUrls } from '../../utils/FrontendUrls';
+import { DossierWebInterfacePage } from '../DossierWebInterfacePage/DossierWebInterfacePage';
 import { Navbar } from '../Navbar/Navbar';
 
 export default function AdminEntityEditorPage(): JSX.Element {
@@ -21,16 +22,18 @@ export default function AdminEntityEditorPage(): JSX.Element {
   useWarningOnExit('Changes will be lost, are you sure you want to leave the page?', shouldWarn);
 
   return (
-    <AppAdminDossierProvider>
-      <Head>
-        <title>Edit entities | {process.env.NEXT_PUBLIC_SITE_NAME}</title>
-      </Head>
-      <EntityEditorScreen
-        header={<Navbar current="admin-entities" />}
-        urlSearchParams={urlSearchParams}
-        onUrlSearchParamsChange={onUrlSearchParamsChange}
-        onEditorHasChangesChange={setHasChanges}
-      />
-    </AppAdminDossierProvider>
+    <DossierWebInterfacePage>
+      <AppAdminDossierProvider>
+        <Head>
+          <title>Edit entities | {process.env.NEXT_PUBLIC_SITE_NAME}</title>
+        </Head>
+        <EntityEditorScreen
+          header={<Navbar current="admin-entities" />}
+          urlSearchParams={urlSearchParams}
+          onUrlSearchParamsChange={onUrlSearchParamsChange}
+          onEditorHasChangesChange={setHasChanges}
+        />
+      </AppAdminDossierProvider>
+    </DossierWebInterfacePage>
   );
 }

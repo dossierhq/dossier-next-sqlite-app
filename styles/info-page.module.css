@@ -1,0 +1,14 @@
+.container {
+  max-width: 50em;
+  margin: 0.5em auto;
+  padding: 0 0.5em;
+}
+
+.header {
+  color: #4a4a4a;
+  margin: 0;
+  font-size: 2em;
+  font-weight: normal;
+  font-family: BlinkMacSystemFont, -apple-system, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+}

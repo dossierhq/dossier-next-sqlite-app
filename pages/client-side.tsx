@@ -1,10 +1,9 @@
 import type { EntitySamplingPayload, ErrorType, PublishedEntity, Result } from '@dossierhq/core';
-import { FullscreenContainer } from '@dossierhq/design';
-import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import { EntitySampleDisplay } from '../components/EntitySampleDisplay/EntitySampleDisplay';
 import { Navbar } from '../components/Navbar/Navbar';
 import { usePublishedClient } from '../hooks/usePublishedClient';
+import styles from '../styles/info-page.module.css';
 
 export default function ClientSidePage(): JSX.Element {
   const publishedClient = usePublishedClient();
@@ -19,18 +18,11 @@ export default function ClientSidePage(): JSX.Element {
 
   return (
     <>
-      <Head>
-        <title>{process.env.NEXT_PUBLIC_SITE_NAME}</title>
-      </Head>
-      <FullscreenContainer>
-        <FullscreenContainer.Row fullWidth>
-          <Navbar current="csr" />
-        </FullscreenContainer.Row>
-        <FullscreenContainer.Row>
-          <h1>Welcome to {process.env.NEXT_PUBLIC_SITE_NAME}</h1>
-          {sampleResult && <EntitySampleDisplay sampleResult={sampleResult} />}
-        </FullscreenContainer.Row>
-      </FullscreenContainer>
+      <Navbar current="csr" />
+      <section className={styles.container}>
+        <h1 className={styles.header}>Using Dossier in Client Side Rendering (CSR)</h1>
+        {sampleResult && <EntitySampleDisplay sampleResult={sampleResult} />}
+      </section>
     </>
   );
 }
