@@ -1,8 +1,9 @@
-import { convertJsonPublishedClientResult, convertJsonResult } from '@dossierhq/core';
+import { convertJsonPublishedClientResult, convertJsonResult, notOk } from '@dossierhq/core';
 import type { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import { EntitySampleDisplay } from '../components/EntitySampleDisplay/EntitySampleDisplay';
 import { Navbar } from '../components/Navbar/Navbar';
+import { BACKEND_LOGGER } from '../config/LoggingConfig';
 import styles from '../styles/info-page.module.css';
 import { getPublishedClientForServerComponent } from '../utils/ServerComponentUtils';
 
@@ -30,7 +31,17 @@ export default function ServerSidePage({ sampleResultJson }: Props): JSX.Element
 }
 
 export const getServerSideProps: GetServerSideProps<Props> = async (_context) => {
-  const publishedClient = await getPublishedClientForServerComponent();
-  const sampleResult = await publishedClient.sampleEntities({}, { count: 5 });
-  return { props: { sampleResultJson: JSON.stringify(sampleResult) } };
+  try {
+    const publishedClient = await getPublishedClientForServerComponent();
+    const sampleResult = await publishedClient.sampleEntities({}, { count: 5 });
+    return { props: { sampleResultJson: JSON.stringify(sampleResult) } };
+  } catch (error) {
+    return {
+      props: {
+        sampleResultJson: JSON.stringify(
+          notOk.GenericUnexpectedException({ logger: BACKEND_LOGGER }, error)
+        ),
+      },
+    };
+  }
 };

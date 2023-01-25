@@ -1,3 +1,5 @@
 import { createConsoleLogger } from '@dossierhq/core';
 
-export const FRONTEND_LOGGER = createConsoleLogger(console);
+const logger = createConsoleLogger(console);
+export const FRONTEND_LOGGER = logger;
+export const BACKEND_LOGGER = logger;
