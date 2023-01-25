@@ -1,8 +1,7 @@
 import type { ErrorResult, ErrorType, PromiseResult } from '@dossierhq/core';
-import { createConsoleLogger, notOk } from '@dossierhq/core';
+import { notOk } from '@dossierhq/core';
 import type { NextApiResponse } from 'next';
-
-const logger = createConsoleLogger(console);
+import { BACKEND_LOGGER } from '../config/LoggingConfig';
 
 function handleError<T>(res: NextApiResponse<T>, error: ErrorResult<unknown, ErrorType>): void {
   res.status(error.httpStatus).json({ message: error.message } as any);
@@ -32,7 +31,7 @@ export async function handleRequest<T>(
       .setHeader('Content-Type', 'application/json; charset=utf-8')
       .send(JSON.stringify(bodyResult.value, null, 2) as unknown as T);
   } catch (error) {
-    const result = notOk.GenericUnexpectedException({ logger }, error);
+    const result = notOk.GenericUnexpectedException({ logger: BACKEND_LOGGER }, error);
     handleError(res, result);
   }
 }
