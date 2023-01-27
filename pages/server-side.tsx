@@ -9,9 +9,10 @@ import { getPublishedClientForServerComponent } from '../utils/ServerComponentUt
 
 interface Props {
   sampleResultJson: string;
+  nextRuntime: string;
 }
 
-export default function ServerSidePage({ sampleResultJson }: Props): JSX.Element {
+export default function ServerSidePage({ sampleResultJson, nextRuntime }: Props): JSX.Element {
   const sampleResult = convertJsonPublishedClientResult(
     'sampleEntities',
     convertJsonResult(JSON.parse(sampleResultJson))
@@ -24,24 +25,25 @@ export default function ServerSidePage({ sampleResultJson }: Props): JSX.Element
       <Navbar current="ssr" />
       <section className={styles.container}>
         <h1 className={styles.header}>Using Dossier in Server Side Rendering (SSR)</h1>
-        <EntitySampleDisplay sampleResult={sampleResult} />
+        <p>RUNTIME: {nextRuntime}</p>
+        {sampleResult.isError() ? <p></p> : <EntitySampleDisplay sampleResult={sampleResult} />}
       </section>
     </>
   );
 }
 
 export const getServerSideProps: GetServerSideProps<Props> = async (_context) => {
+  let sampleResult;
   try {
     const publishedClient = await getPublishedClientForServerComponent();
-    const sampleResult = await publishedClient.sampleEntities({}, { count: 5 });
-    return { props: { sampleResultJson: JSON.stringify(sampleResult) } };
+    sampleResult = await publishedClient.sampleEntities({}, { count: 5 });
   } catch (error) {
-    return {
-      props: {
-        sampleResultJson: JSON.stringify(
-          notOk.GenericUnexpectedException({ logger: BACKEND_LOGGER }, error)
-        ),
-      },
-    };
+    sampleResult = notOk.GenericUnexpectedException({ logger: BACKEND_LOGGER }, error);
   }
+  return {
+    props: {
+      sampleResultJson: JSON.stringify(sampleResult),
+      nextRuntime: process.env.NEXT_RUNTIME ?? 'unknown',
+    },
+  };
 };
