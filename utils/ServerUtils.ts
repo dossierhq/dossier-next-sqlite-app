@@ -8,7 +8,7 @@ import type {
 import { createConsoleLogger, notOk, ok } from '@dossierhq/core';
 import type { AuthorizationAdapter, Server } from '@dossierhq/server';
 import { createServer, NoneAndSubjectAuthorizationAdapter } from '@dossierhq/server';
-import { createSqlite3Adapter } from '@dossierhq/sqlite3';
+import { createDatabase, createSqlite3Adapter } from '@dossierhq/sqlite3';
 import type { NextApiRequest } from 'next';
 import type { Database } from 'sqlite3';
 import * as Sqlite from 'sqlite3';
@@ -69,14 +69,12 @@ export async function getServerConnection(): Promise<{ server: Server }> {
 
 async function createDatabaseAdapter(logger: Logger) {
   const context = { logger };
-  let database: Database;
-  try {
-    database = new SqliteDatabase('data/database.sqlite');
-  } catch (error) {
-    return notOk.GenericUnexpectedException(context, error);
-  }
+  const databaseResult = await createDatabase(context, SqliteDatabase, {
+    filename: 'data/database.sqlite',
+  });
+  if (databaseResult.isError()) return databaseResult;
 
-  const databaseAdapterResult = await createSqlite3Adapter(context, database, {
+  const databaseAdapterResult = await createSqlite3Adapter(context, databaseResult.value, {
     migrate: true,
     fts: { version: 'fts5' },
     journalMode: 'wal',
