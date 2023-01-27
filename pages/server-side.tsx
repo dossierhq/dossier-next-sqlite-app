@@ -9,10 +9,9 @@ import { getPublishedClientForServerComponent } from '../utils/ServerComponentUt
 
 interface Props {
   sampleResultJson: string;
-  nextRuntime: string;
 }
 
-export default function ServerSidePage({ sampleResultJson, nextRuntime }: Props): JSX.Element {
+export default function ServerSidePage({ sampleResultJson }: Props): JSX.Element {
   const sampleResult = convertJsonPublishedClientResult(
     'sampleEntities',
     convertJsonResult(JSON.parse(sampleResultJson))
@@ -25,8 +24,13 @@ export default function ServerSidePage({ sampleResultJson, nextRuntime }: Props)
       <Navbar current="ssr" />
       <section className={styles.container}>
         <h1 className={styles.header}>Using Dossier in Server Side Rendering (SSR)</h1>
-        <p>RUNTIME: {nextRuntime}</p>
-        {sampleResult.isError() ? <p></p> : <EntitySampleDisplay sampleResult={sampleResult} />}
+        <EntitySampleDisplay sampleResult={sampleResult} />
+        {sampleResult.isError() ? (
+          <p className={styles.paragraph}>
+            If running on a serverless platform (e.g. Netlify or Vercel), using SQLite is not
+            supported for SSR.
+          </p>
+        ) : null}
       </section>
     </>
   );
@@ -42,8 +46,8 @@ export const getServerSideProps: GetServerSideProps<Props> = async (_context) =>
   }
   return {
     props: {
+      // Page props have to be JSON serializable for Next.js, so we convert the result to JSON ourselves.
       sampleResultJson: JSON.stringify(sampleResult),
-      nextRuntime: process.env.NEXT_RUNTIME ?? 'unknown',
     },
   };
 };

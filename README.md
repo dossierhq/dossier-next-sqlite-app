@@ -9,9 +9,10 @@ need to login and all users use the same anonymous user. In order to protect the
 interface is disabled.
 
 > **Warning**
-> When deploying to Netlify or Vercel you will only be able to use Dossier at build-time, since
-> Next.js cloud functions don't support opening SQLite databases in run-time. Running locally, or in
-> a "normal" Node server doesn't have this restriction.
+> When deploying to Netlify or [Vercel](https://vercel.com/guides/is-sqlite-supported-in-vercel) you
+> will only be able to use Dossier at build-time, since Next.js running in serverless mode don't
+> support opening SQLite databases in run-time. Running locally, or in a "normal" Node server
+> doesn't have this restriction.
 
 ## Getting started
 

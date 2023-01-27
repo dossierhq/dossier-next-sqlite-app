@@ -22,6 +22,12 @@ export default function ClientSidePage(): JSX.Element {
       <section className={styles.container}>
         <h1 className={styles.header}>Using Dossier in Client Side Rendering (CSR)</h1>
         {sampleResult && <EntitySampleDisplay sampleResult={sampleResult} />}
+        {sampleResult && sampleResult.isError() ? (
+          <p className={styles.paragraph}>
+            If running on a serverless platform (e.g. Netlify or Vercel), using SQLite is not
+            supported for CSR.
+          </p>
+        ) : null}
       </section>
     </>
   );
