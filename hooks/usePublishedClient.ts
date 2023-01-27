@@ -2,13 +2,17 @@ import type { ClientContext, PublishedClientOperation } from '@dossierhq/core';
 import { convertJsonPublishedClientResult, createBasePublishedClient } from '@dossierhq/core';
 import { useMemo } from 'react';
 import { FRONTEND_LOGGER } from '../config/LoggingConfig';
+import type { AppPublishedClient } from '../types/SchemaTypes';
 import { BackendUrls } from '../utils/BackendUrls';
 import { fetchJsonResult } from '../utils/BackendUtils';
 
 export function usePublishedClient() {
   return useMemo(() => {
     const context = { logger: FRONTEND_LOGGER };
-    return createBasePublishedClient({ context, pipeline: [terminatingPublishedMiddleware] });
+    return createBasePublishedClient<ClientContext, AppPublishedClient>({
+      context,
+      pipeline: [terminatingPublishedMiddleware],
+    });
   }, []);
 }
 
