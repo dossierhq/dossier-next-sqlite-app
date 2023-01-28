@@ -1,5 +1,5 @@
 {
-  "cSpell.words": ["dossierhq", "nvmrc"],
+  "cSpell.words": ["dossierhq", "flyctl", "nvmrc", "superfly"],
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   "editor.rulers": [100],
