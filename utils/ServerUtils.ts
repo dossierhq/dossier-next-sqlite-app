@@ -5,7 +5,6 @@ import { createServer, NoneAndSubjectAuthorizationAdapter } from '@dossierhq/ser
 import { createDatabase, createSqlite3Adapter } from '@dossierhq/sqlite3';
 import * as Sqlite from 'sqlite3';
 import { OPEN_READONLY } from 'sqlite3';
-import { ENABLE_WEB_INTERFACE } from '../config/WebInterfaceConfig';
 
 // TODO @types/sqlite is slightly wrong in terms of CommonJS/ESM export
 const { Database: SqliteDatabase } = (Sqlite as unknown as { default: typeof Sqlite }).default;
@@ -44,7 +43,7 @@ export async function getServerConnection(): Promise<{ server: Server }> {
 async function createDatabaseAdapter(logger: Logger) {
   const context = { logger };
   const filename = process.env.SQLITE_FILE ?? 'data/database.sqlite';
-  const readOnly = !ENABLE_WEB_INTERFACE;
+  const readOnly = process.env.SQLITE_READONLY === 'true';
   logger.info(`Using database file: ${filename}${readOnly ? ' (read-only)' : ''}`);
   const databaseResult = await createDatabase(context, SqliteDatabase, {
     filename,

@@ -1,4 +1,4 @@
-import type { EntitySamplingPayload, ErrorType, Result } from '@dossierhq/core';
+import type { EntitySamplingPayload, ErrorType, PublishedEntity, Result } from '@dossierhq/core';
 import type { AllPublishedEntities } from '../../types/SchemaTypes';
 import styles from './EntitySampleDisplay.module.css';
 
@@ -28,11 +28,17 @@ export function EntitySampleDisplay({ sampleResult }: Props) {
       </p>
       {sampleResult.value.items.length > 0 ? (
         <ul className={styles.list}>
-          {sampleResult.value.items.map((entity) => (
-            <li key={entity.id}>
-              Type: {entity.info.type}, id: {entity.id}, name: {entity.info.name}
-            </li>
-          ))}
+          {sampleResult.value.items.map((item) => {
+            // This is only needed since we don't have any entity types in the main branch so the
+            // type of item is 'never' on the main branch. Feel free to remove this cast when you've
+            // added some entity types.
+            const entity = item as PublishedEntity;
+            return (
+              <li key={entity.id}>
+                Type: {entity.info.type}, id: {entity.id}, name: {entity.info.name}
+              </li>
+            );
+          })}
         </ul>
       ) : null}
     </>
