@@ -1,18 +1,18 @@
-import type { ErrorType, PromiseResult, PublishedClient } from '@dossierhq/core';
+import type { ErrorType, PromiseResult } from '@dossierhq/core';
 import { notOk, ok } from '@dossierhq/core';
 import type { Server } from '@dossierhq/server';
 import type { NextApiRequest } from 'next';
 import type { AppAdminClient, AppPublishedClient } from '../types/SchemaTypes';
 import { getServerConnection, SYSTEM_USERS } from './ServerUtils';
 
-let publishedClientPromise: Promise<PublishedClient> | null = null;
+let publishedClientPromise: Promise<AppPublishedClient> | null = null;
 
-export function getPublishedClientForServerComponent(): Promise<PublishedClient> {
+export function getPublishedClientForServerComponent(): Promise<AppPublishedClient> {
   if (!publishedClientPromise) {
     publishedClientPromise = (async () => {
       const { server } = await getServerConnection();
       const authResult = await server.createSession(SYSTEM_USERS.anonymous);
-      return server.createPublishedClient<PublishedClient>(authResult.valueOrThrow().context);
+      return server.createPublishedClient<AppPublishedClient>(authResult.valueOrThrow().context);
     })();
   }
   return publishedClientPromise;
