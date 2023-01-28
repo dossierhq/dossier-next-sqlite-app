@@ -3,15 +3,16 @@ import { convertJsonAdminClientResult, createBaseAdminClient } from '@dossierhq/
 import { useCachingAdminMiddleware } from '@dossierhq/react-components';
 import { useMemo } from 'react';
 import { FRONTEND_LOGGER } from '../config/LoggingConfig';
+import type { AppAdminClient } from '../types/SchemaTypes';
 import { BackendUrls } from '../utils/BackendUrls';
-import { fetchJsonResult } from '../utils/BackendUtils';
+import { fetchJsonResult } from '../utils/FetchUtils';
 
 export function useAdminClient() {
   const cachingMiddleware = useCachingAdminMiddleware();
 
   return useMemo(() => {
     const context = { logger: FRONTEND_LOGGER };
-    return createBaseAdminClient({
+    return createBaseAdminClient<ClientContext, AppAdminClient>({
       context,
       pipeline: [cachingMiddleware, terminatingAdminMiddleware],
     });

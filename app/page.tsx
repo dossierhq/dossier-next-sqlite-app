@@ -1,7 +1,7 @@
 import { EntitySampleDisplay } from '../components/EntitySampleDisplay/EntitySampleDisplay';
 import { Navbar } from '../components/Navbar/Navbar';
 import styles from '../styles/info-page.module.css';
-import { getPublishedClientForServerComponent } from '../utils/ServerComponentUtils';
+import { getPublishedClientForServerComponent } from '../utils/BackendServerUtils';
 
 export default async function Page() {
   const publishedClient = await getPublishedClientForServerComponent();

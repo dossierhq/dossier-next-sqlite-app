@@ -4,7 +4,7 @@ import Head from 'next/head';
 import { EntitySampleDisplay } from '../components/EntitySampleDisplay/EntitySampleDisplay';
 import { Navbar } from '../components/Navbar/Navbar';
 import styles from '../styles/info-page.module.css';
-import { getPublishedClientForServerComponent } from '../utils/ServerComponentUtils';
+import { getPublishedClientForServerComponent } from '../utils/BackendServerUtils';
 
 interface Props {
   sampleResultJson: string;
