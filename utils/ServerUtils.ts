@@ -1,11 +1,9 @@
-import type { ErrorType, Logger, PromiseResult } from '@dossierhq/core';
-import { createConsoleLogger, notOk, ok } from '@dossierhq/core';
+import type { Logger } from '@dossierhq/core';
+import { createConsoleLogger } from '@dossierhq/core';
 import type { AuthorizationAdapter, Server } from '@dossierhq/server';
 import { createServer, NoneAndSubjectAuthorizationAdapter } from '@dossierhq/server';
 import { createDatabase, createSqlite3Adapter } from '@dossierhq/sqlite3';
-import type { NextApiRequest } from 'next';
 import * as Sqlite from 'sqlite3';
-import type { AppAdminClient, AppPublishedClient } from '../types/SchemaTypes';
 
 // TODO @types/sqlite is slightly wrong in terms of CommonJS/ESM export
 const { Database: SqliteDatabase } = (Sqlite as unknown as { default: typeof Sqlite }).default;
@@ -22,26 +20,6 @@ export const SYSTEM_USERS = {
 
 let serverConnectionPromise: Promise<{ server: Server }> | null = null;
 const logger = createConsoleLogger(console);
-
-export async function getSessionContextForRequest(
-  server: Server,
-  req: NextApiRequest
-): PromiseResult<
-  { adminClient: AppAdminClient; publishedClient: AppPublishedClient },
-  typeof ErrorType.NotAuthenticated
-> {
-  //TODO actually authenticate, currently just using anonymous for everything
-  const sessionResult = await server.createSession(SYSTEM_USERS.anonymous);
-  if (sessionResult.isError()) {
-    return notOk.NotAuthenticated(
-      `Failed authentication: ${sessionResult.error}: ${sessionResult.message}`
-    );
-  }
-  const { context } = sessionResult.value;
-  const adminClient = server.createAdminClient<AppAdminClient>(context);
-  const publishedClient = server.createPublishedClient<AppPublishedClient>(context);
-  return ok({ adminClient, publishedClient });
-}
 
 export async function getServerConnection(): Promise<{ server: Server }> {
   if (!serverConnectionPromise) {

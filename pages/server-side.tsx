@@ -5,7 +5,7 @@ import { EntitySampleDisplay } from '../components/EntitySampleDisplay/EntitySam
 import { Navbar } from '../components/Navbar/Navbar';
 import { BACKEND_LOGGER } from '../config/LoggingConfig';
 import styles from '../styles/info-page.module.css';
-import { getPublishedClientForServerComponent } from '../utils/ServerComponentUtils';
+import { getPublishedClientForServerComponent } from '../utils/BackendServerUtils';
 
 interface Props {
   sampleResultJson: string;

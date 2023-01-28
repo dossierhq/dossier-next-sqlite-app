@@ -8,8 +8,9 @@ import {
 } from '@dossierhq/core';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { ENABLE_WEB_INTERFACE } from '../../../config/WebInterfaceConfig';
+import { getSessionContextForRequest } from '../../../utils/BackendServerUtils';
 import { handleRequest, sendMethodNotAllowedError } from '../../../utils/HandlerUtils';
-import { getServerConnection, getSessionContextForRequest } from '../../../utils/ServerUtils';
+import { getServerConnection } from '../../../utils/ServerUtils';
 
 export default async function adminOperationHandler(
   req: NextApiRequest,
