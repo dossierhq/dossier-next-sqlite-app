@@ -36,6 +36,37 @@ the state of Dossier and synchronize it between computers.
 - `docker build -t dossier-next-sqlite-app .`
 - `docker run -p 3000:3000 --mount type=bind,source="$(pwd)"/data,target=/data --env SQLITE_FILE=/data/database.sqlite dossier-next-sqlite-app`
 
+### Fly.io
+
+[Fly.io](https://fly.io/) allows to deploy apps with generous
+[free allowance](https://fly.io/docs/about/pricing/#free-allowances).
+
+Follow the guide to [install flyctl, sign up and sign in to Fly.io](https://fly.io/docs/hands-on/).
+The generate a new Fly app:
+
+```console
+$ cd my-project
+$ fly launch # select NO on deploy now
+```
+
+Change the generated file `fly.toml` and set the `PORT` environment variable to 8080, like so:
+
+```toml
+[env]
+  PORT = "8080"
+```
+
+Now you can go ahead and deploy:
+
+```console
+$ fly deploy
+$ fly open
+```
+
+- [Demo](https://dossier-next-sqlite-app.fly.dev/) (using the
+  [demo](https://github.com/dossierhq/dossier-next-sqlite-app/tree/demo) branch)
+- The database file is part of the deployed app, but it's read-only. Fly supports [persistent storage](https://fly.io/docs/reference/volumes/), but if you're using a deployed writable database you most likely want auth as well, so it's out of scope for this template
+
 ### Netlify
 
 [![Deploy with Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/dossierhq/dossier-next-sqlite-app)
