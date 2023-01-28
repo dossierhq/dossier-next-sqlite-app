@@ -41,9 +41,9 @@ export async function getServerConnection(): Promise<{ server: Server }> {
 
 async function createDatabaseAdapter(logger: Logger) {
   const context = { logger };
-  const databaseResult = await createDatabase(context, SqliteDatabase, {
-    filename: 'data/database.sqlite',
-  });
+  const filename = process.env.SQLITE_FILE ?? ':memory:';
+  logger.info(`Using database file: ${filename}`);
+  const databaseResult = await createDatabase(context, SqliteDatabase, { filename });
   if (databaseResult.isError()) return databaseResult;
 
   const databaseAdapterResult = await createSqlite3Adapter(context, databaseResult.value, {

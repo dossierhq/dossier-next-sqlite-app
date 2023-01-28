@@ -31,6 +31,11 @@ the state of Dossier and synchronize it between computers.
 
 ## Deploy
 
+### Docker
+
+- `docker build -t dossier-next-sqlite-app .`
+- `docker run -p 3000:3000 --mount type=bind,source="$(pwd)"/data,target=/data --env SQLITE_FILE=/data/database.sqlite dossier-next-sqlite-app`
+
 ### Netlify
 
 [![Deploy with Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/dossierhq/dossier-next-sqlite-app)
