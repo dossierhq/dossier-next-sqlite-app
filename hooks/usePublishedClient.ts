@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 import { FRONTEND_LOGGER } from '../config/LoggingConfig';
 import type { AppPublishedClient } from '../types/SchemaTypes';
 import { BackendUrls } from '../utils/BackendUrls';
-import { fetchJsonResult } from '../utils/BackendUtils';
+import { fetchJsonResult } from '../utils/FetchUtils';
 
 export function usePublishedClient() {
   return useMemo(() => {
