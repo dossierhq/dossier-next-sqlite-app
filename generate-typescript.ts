@@ -3,7 +3,7 @@ import { AdminSchema } from '@dossierhq/core';
 import type { Server } from '@dossierhq/server';
 import { generateTypescriptForSchema } from '@dossierhq/typescript-generator';
 import { execFileSync } from 'node:child_process';
-import { writeFile, mkdir } from 'node:fs/promises';
+import { mkdir, writeFile } from 'node:fs/promises';
 import { getServerConnection, SYSTEM_USERS } from './utils/ServerUtils';
 
 async function generateTypes(adminSchema: AdminSchema, filename: string) {
