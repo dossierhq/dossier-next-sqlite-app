@@ -33,7 +33,7 @@ the state of Dossier and synchronize it between computers.
 
 ### Docker
 
-- `docker build -t dossier-next-sqlite-app .`
+- `docker build --target runner -t dossier-next-sqlite-app .`
 - `docker run -p 3000:3000 --mount type=bind,source="$(pwd)"/data,target=/data --env SQLITE_FILE=/data/database.sqlite dossier-next-sqlite-app`
 
 ### Fly.io
