@@ -1,9 +1,9 @@
-import type { EntitySamplingPayload, ErrorType, PublishedEntity, Result } from '@dossierhq/core';
-import type { AllPublishedEntities } from '../../types/SchemaTypes';
+import type { PublishedEntity } from '@dossierhq/core';
+import type { AppPublishedClient } from '../../types/SchemaTypes';
 import styles from './EntitySampleDisplay.module.css';
 
 interface Props {
-  sampleResult: Result<EntitySamplingPayload<AllPublishedEntities>, ErrorType>;
+  sampleResult: Awaited<ReturnType<AppPublishedClient['sampleEntities']>>;
 }
 
 export function EntitySampleDisplay({ sampleResult }: Props) {

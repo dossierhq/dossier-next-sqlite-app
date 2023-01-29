@@ -1,16 +1,14 @@
-import type { EntitySamplingPayload, ErrorType, Result } from '@dossierhq/core';
 import { useEffect, useState } from 'react';
 import { EntitySampleDisplay } from '../components/EntitySampleDisplay/EntitySampleDisplay';
 import { Navbar } from '../components/Navbar/Navbar';
 import { usePublishedClient } from '../hooks/usePublishedClient';
 import styles from '../styles/info-page.module.css';
-import type { AllPublishedEntities } from '../types/SchemaTypes';
+import type { AppPublishedClient } from '../types/SchemaTypes';
 
 export default function ClientSidePage(): JSX.Element {
   const publishedClient = usePublishedClient();
-  const [sampleResult, setSampleResult] = useState<Result<
-    EntitySamplingPayload<AllPublishedEntities>,
-    ErrorType
+  const [sampleResult, setSampleResult] = useState<Awaited<
+    ReturnType<AppPublishedClient['sampleEntities']>
   > | null>(null);
 
   useEffect(() => {
