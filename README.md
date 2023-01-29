@@ -9,10 +9,9 @@ need to login and all users use the same anonymous user. In order to protect the
 interface is disabled.
 
 > **Warning**
-> When deploying to Netlify or [Vercel](https://vercel.com/guides/is-sqlite-supported-in-vercel) you
-> will only be able to use Dossier at build-time, since Next.js running in serverless mode don't
-> support opening SQLite databases in run-time. Running locally, or in a "normal" Node server
-> doesn't have this restriction.
+> When deploying to Netlify or Vercel you will only be able to use Dossier at build-time, since
+> Next.js running in serverless mode don't support opening SQLite databases in run-time. Running
+> locally, or in a "normal" Node server doesn't have this restriction.
 
 ## Getting started
 
@@ -82,5 +81,5 @@ $ fly open
 
 - [Demo](https://dossier-next-sqlite-app.vercel.app/) using the
   [demo](https://github.com/dossierhq/dossier-next-sqlite-app/tree/demo) branch)
-- **N.B** Only static (i.e. build-time) usages of Dossier are supported on Vercel when using an
-  SQLite database.
+- **N.B** Only static (i.e. build-time) usages of Dossier are supported on
+  [Vercel when using an SQLite database](https://vercel.com/guides/is-sqlite-supported-in-vercel).
