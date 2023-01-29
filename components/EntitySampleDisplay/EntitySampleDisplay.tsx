@@ -32,7 +32,7 @@ export function EntitySampleDisplay({ sampleResult }: Props) {
             // This is only needed since we don't have any entity types in the main branch so the
             // type of item is 'never' on the main branch. Feel free to remove this cast when you've
             // added some entity types.
-            const entity = item as PublishedEntity;
+            const entity = item as unknown as PublishedEntity;
             return (
               <li key={entity.id}>
                 Type: {entity.info.type}, id: {entity.id}, name: {entity.info.name}
