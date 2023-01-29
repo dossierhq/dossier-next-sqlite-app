@@ -43,9 +43,9 @@ const items: Item[] = [
     cssScope: 'app',
   },
   {
-    id: 'csr',
-    url: FrontendUrls.clientSide,
-    title: 'CSR',
+    id: 'ssg',
+    url: FrontendUrls.static,
+    title: 'SSG',
     cssScope: 'app',
   },
   {
@@ -55,9 +55,9 @@ const items: Item[] = [
     cssScope: 'app',
   },
   {
-    id: 'ssg',
-    url: FrontendUrls.static,
-    title: 'SSG',
+    id: 'csr',
+    url: FrontendUrls.clientSide,
+    title: 'CSR',
     cssScope: 'app',
   },
   ...(ENABLE_WEB_INTERFACE ? webInterfaceItems : []),
