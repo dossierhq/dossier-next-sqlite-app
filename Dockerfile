@@ -35,8 +35,22 @@ ENV NEXT_TELEMETRY_DISABLED 1
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-COPY --from=builder /app ./
+COPY --from=builder /app/public ./public
+
+# Automatically leverage output traces to reduce image size
+# https://nextjs.org/docs/advanced-features/output-file-tracing
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
 USER nextjs
 
-CMD ["npm", "run", "start:production"]
+CMD ["node", "server.js"]
+
+# Production image with readonly database
+FROM node:18-alpine AS runnerreadonly
+WORKDIR /app
+
+COPY --from=runner /app ./
+COPY data ./data/
+
+CMD ["node", "server.js"]
