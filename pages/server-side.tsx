@@ -1,4 +1,3 @@
-import type { EntitySamplingPayload, ErrorType, Result } from '@dossierhq/core';
 import { convertJsonPublishedClientResult, convertJsonResult, notOk } from '@dossierhq/core';
 import type { GetServerSideProps } from 'next';
 import Head from 'next/head';
@@ -6,7 +5,7 @@ import { EntitySampleDisplay } from '../components/EntitySampleDisplay/EntitySam
 import { Navbar } from '../components/Navbar/Navbar';
 import { BACKEND_LOGGER } from '../config/LoggingConfig';
 import styles from '../styles/info-page.module.css';
-import type { AllPublishedEntities } from '../types/SchemaTypes';
+import type { AppPublishedClient } from '../types/SchemaTypes';
 import { getPublishedClientForServerComponent } from '../utils/BackendServerUtils';
 
 interface Props {
@@ -14,10 +13,10 @@ interface Props {
 }
 
 export default function ServerSidePage({ sampleResultJson }: Props): JSX.Element {
-  const sampleResult = convertJsonPublishedClientResult(
+  const sampleResult = convertJsonPublishedClientResult<'sampleEntities', AppPublishedClient>(
     'sampleEntities',
     convertJsonResult(JSON.parse(sampleResultJson))
-  ) as Result<EntitySamplingPayload<AllPublishedEntities>, ErrorType>;
+  );
   return (
     <>
       <Head>
