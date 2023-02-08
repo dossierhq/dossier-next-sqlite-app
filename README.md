@@ -1,9 +1,11 @@
 # dossier-next-sqlite-app
 
+[![Node CI](https://github.com/dossierhq/dossier-next-sqlite-app/actions/workflows/node.js.yml/badge.svg)](https://github.com/dossierhq/dossier-next-sqlite-app/actions/workflows/node.js.yml) [![Demo - Deploy to Fly](https://github.com/dossierhq/dossier-next-sqlite-app/actions/workflows/demo-deploy-fly.yml/badge.svg?branch=demo)](https://github.com/dossierhq/dossier-next-sqlite-app/actions/workflows/demo-deploy-fly.yml)
+
 This is a template for an app using [Dossier](https://dossierhq.dev/), [Next.js](https://nextjs.org/)
 and [SQLite](https://www.sqlite.org/).
 
-In order to keep things as simple as possible, this template doesn't have any auth. I.e. there no
+In order to keep things as simple as possible, this template doesn't have any auth. I.e. there's no
 need to login and all users use the same anonymous user. In order to protect the data, in production
 (`npm run start:production`) only read-only published content can be accessed, and the Dossier web
 interface is disabled.
