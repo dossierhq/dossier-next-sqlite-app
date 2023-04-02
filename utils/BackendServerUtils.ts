@@ -11,7 +11,11 @@ export function getPublishedClientForServerComponent(): Promise<AppPublishedClie
   if (!publishedClientPromise) {
     publishedClientPromise = (async () => {
       const { server } = await getServerConnection();
-      const authResult = await server.createSession(SYSTEM_USERS.anonymous);
+      const authResult = await server.createSession({
+        ...SYSTEM_USERS.anonymous,
+        logger: null,
+        databasePerformance: null,
+      });
       return server.createPublishedClient<AppPublishedClient>(authResult.valueOrThrow().context);
     })();
   }
@@ -26,7 +30,11 @@ export async function getSessionContextForRequest(
   typeof ErrorType.NotAuthenticated
 > {
   //TODO actually authenticate, currently just using anonymous for everything
-  const sessionResult = await server.createSession(SYSTEM_USERS.anonymous);
+  const sessionResult = await server.createSession({
+    ...SYSTEM_USERS.anonymous,
+    logger: null,
+    databasePerformance: null,
+  });
   if (sessionResult.isError()) {
     return notOk.NotAuthenticated(
       `Failed authentication: ${sessionResult.error}: ${sessionResult.message}`
