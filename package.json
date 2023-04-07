@@ -32,7 +32,7 @@
     "@types/react": "~18.0.31",
     "@types/sqlite3": "~3.1.8",
     "@typescript-eslint/eslint-plugin": "~5.57.0",
-    "eslint": "~8.36.0",
+    "eslint": "~8.37.0",
     "eslint-config-next": "~13.2.4",
     "prettier": "2.8.7",
     "ts-node": "^10.9.1",
