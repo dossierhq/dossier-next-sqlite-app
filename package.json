@@ -29,7 +29,7 @@
     "sqlite3": "~5.1.6"
   },
   "devDependencies": {
-    "@types/react": "~18.0.31",
+    "@types/react": "~18.0.33",
     "@types/sqlite3": "~3.1.8",
     "@typescript-eslint/eslint-plugin": "~5.57.0",
     "eslint": "~8.36.0",
