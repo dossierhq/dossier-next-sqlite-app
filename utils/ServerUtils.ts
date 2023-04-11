@@ -1,7 +1,11 @@
 import type { Logger } from '@dossierhq/core';
 import { createConsoleLogger } from '@dossierhq/core';
 import type { AuthorizationAdapter, Server } from '@dossierhq/server';
-import { createServer, NoneAndSubjectAuthorizationAdapter } from '@dossierhq/server';
+import {
+  BackgroundEntityValidatorPlugin,
+  NoneAndSubjectAuthorizationAdapter,
+  createServer,
+} from '@dossierhq/server';
 import { createDatabase, createSqlite3Adapter } from '@dossierhq/sqlite3';
 import * as Sqlite from 'sqlite3';
 import { OPEN_READONLY } from 'sqlite3';
@@ -26,6 +30,7 @@ export async function getServerConnection(): Promise<{ server: Server }> {
   if (!serverConnectionPromise) {
     serverConnectionPromise = (async () => {
       const databaseAdapter = (await createDatabaseAdapter(logger)).valueOrThrow();
+
       const server = (
         await createServer({
           databaseAdapter,
@@ -33,6 +38,11 @@ export async function getServerConnection(): Promise<{ server: Server }> {
           logger,
         })
       ).valueOrThrow();
+
+      const validationPlugin = new BackgroundEntityValidatorPlugin(server, logger);
+      server.addPlugin(validationPlugin);
+      validationPlugin.start();
+
       return { server };
     })();
   }
