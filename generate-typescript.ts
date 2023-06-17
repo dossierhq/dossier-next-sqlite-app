@@ -15,7 +15,11 @@ async function generateTypes(adminSchema: AdminSchema, filename: string) {
 }
 
 async function getAdminSchema(server: Server) {
-  const initSession = server.createSession(SYSTEM_USERS.anonymous);
+  const initSession = server.createSession({
+    ...SYSTEM_USERS.anonymous,
+    logger: null,
+    databasePerformance: null,
+  });
   const adminClient = server.createAdminClient(() => initSession);
   const schemaResult = await adminClient.getSchemaSpecification();
   return new AdminSchema(schemaResult.valueOrThrow());

@@ -81,7 +81,7 @@ $ fly open
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fdossierhq%2Fdossier-next-sqlite-app)
 
-- [Demo](https://dossier-next-sqlite-app.vercel.app/) using the
+- [Demo](https://dossier-next-sqlite-app.vercel.app/) (using the
   [demo](https://github.com/dossierhq/dossier-next-sqlite-app/tree/demo) branch)
 - **N.B** Only static (i.e. build-time) usages of Dossier are supported on
   [Vercel when using an SQLite database](https://vercel.com/guides/is-sqlite-supported-in-vercel).
