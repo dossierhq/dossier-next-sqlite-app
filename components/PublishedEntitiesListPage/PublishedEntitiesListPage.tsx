@@ -15,7 +15,7 @@ export default function PublishedEntitiesListPage(): JSX.Element | null {
 
   const handleEntityOpen = useCallback(
     (entity: PublishedEntity) => router.push(FrontendUrls.publishedEntityDisplay([entity.id])),
-    [router]
+    [router],
   );
 
   return (

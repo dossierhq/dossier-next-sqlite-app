@@ -21,7 +21,7 @@ export function useAdminClient() {
 
 async function terminatingAdminMiddleware(
   context: ClientContext,
-  operation: AdminClientOperation
+  operation: AdminClientOperation,
 ): Promise<void> {
   let result: Result<unknown, ErrorType>;
   if (operation.modifies) {
