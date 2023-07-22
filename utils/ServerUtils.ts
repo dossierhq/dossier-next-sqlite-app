@@ -1,10 +1,9 @@
-import type { Logger } from '@dossierhq/core';
-import { createConsoleLogger } from '@dossierhq/core';
+import { createConsoleLogger, type Logger } from '@dossierhq/core';
 import type { AuthorizationAdapter, Server } from '@dossierhq/server';
 import {
-  BackgroundEntityValidatorPlugin,
-  NoneAndSubjectAuthorizationAdapter,
+  BackgroundEntityProcessorPlugin,
   createServer,
+  NoneAndSubjectAuthorizationAdapter,
 } from '@dossierhq/server';
 import { createDatabase, createSqlite3Adapter } from '@dossierhq/sqlite3';
 import * as Sqlite from 'sqlite3';
@@ -39,9 +38,9 @@ export async function getServerConnection(): Promise<{ server: Server }> {
         })
       ).valueOrThrow();
 
-      const validationPlugin = new BackgroundEntityValidatorPlugin(server, logger);
-      server.addPlugin(validationPlugin);
-      validationPlugin.start();
+      const plugin = new BackgroundEntityProcessorPlugin(server, logger);
+      server.addPlugin(plugin);
+      plugin.start();
 
       return { server };
     })();

@@ -15,11 +15,11 @@ export default function AdminEntitiesListPage(): JSX.Element | null {
 
   const handleCreateEntity = useCallback(
     (type: string) => router.push(FrontendUrls.editPageNew(type, crypto.randomUUID())),
-    [router]
+    [router],
   );
   const handleEntityOpen = useCallback(
     (entity: AdminEntity) => router.push(FrontendUrls.editPage([entity.id])),
-    [router]
+    [router],
   );
 
   return (

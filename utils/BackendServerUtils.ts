@@ -24,7 +24,7 @@ export function getPublishedClientForServerComponent(): Promise<AppPublishedClie
 
 export async function getSessionContextForRequest(
   server: Server,
-  req: NextApiRequest
+  req: NextApiRequest,
 ): PromiseResult<
   { adminClient: AppAdminClient; publishedClient: AppPublishedClient },
   typeof ErrorType.NotAuthenticated
@@ -37,7 +37,7 @@ export async function getSessionContextForRequest(
   });
   if (sessionResult.isError()) {
     return notOk.NotAuthenticated(
-      `Failed authentication: ${sessionResult.error}: ${sessionResult.message}`
+      `Failed authentication: ${sessionResult.error}: ${sessionResult.message}`,
     );
   }
   const { context } = sessionResult.value;

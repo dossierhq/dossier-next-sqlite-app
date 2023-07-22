@@ -27,7 +27,7 @@ export function AppAdminDossierProvider({ children }: { children: React.ReactNod
       adapter: new AdminContextAdapter(),
       authKeys: DISPLAY_AUTH_KEYS,
     }),
-    [adminClient]
+    [adminClient],
   );
 
   return (

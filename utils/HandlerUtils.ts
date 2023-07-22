@@ -9,7 +9,7 @@ function handleError<T>(res: NextApiResponse<T>, error: ErrorResult<unknown, Err
 
 export function sendMethodNotAllowedError<T>(
   res: NextApiResponse<T>,
-  allowedMethods: ('GET' | 'HEAD' | 'POST' | 'PUT' | 'DELETE')[]
+  allowedMethods: ('GET' | 'HEAD' | 'POST' | 'PUT' | 'DELETE')[],
 ) {
   res.setHeader('Allow', allowedMethods.join(', '));
   res.status(405).end();
@@ -17,7 +17,7 @@ export function sendMethodNotAllowedError<T>(
 
 export async function handleRequest<T>(
   res: NextApiResponse<T>,
-  handler: () => PromiseResult<T, ErrorType>
+  handler: () => PromiseResult<T, ErrorType>,
 ): Promise<void> {
   try {
     const bodyResult = await handler();

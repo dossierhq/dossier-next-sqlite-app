@@ -15,7 +15,7 @@ interface Props {
 export default function ServerSidePage({ sampleResultJson }: Props): JSX.Element {
   const sampleResult = convertJsonPublishedClientResult<'sampleEntities', AppPublishedClient>(
     'sampleEntities',
-    convertJsonResult(JSON.parse(sampleResultJson))
+    convertJsonResult(JSON.parse(sampleResultJson)),
   );
   return (
     <>

@@ -14,7 +14,7 @@ class PublishedContextAdapter implements PublishedDossierContextAdapter {
   }
 
   renderPublishedRichTextValueItemDisplay(
-    _props: RichTextValueItemDisplayProps
+    _props: RichTextValueItemDisplayProps,
   ): JSX.Element | null {
     return null;
   }
@@ -28,7 +28,7 @@ export function AppPublishedDossierProvider({ children }: { children: React.Reac
       adapter: new PublishedContextAdapter(),
       authKeys: DISPLAY_AUTH_KEYS,
     }),
-    [publishedClient]
+    [publishedClient],
   );
 
   return <PublishedDossierProvider {...args}>{children}</PublishedDossierProvider>;

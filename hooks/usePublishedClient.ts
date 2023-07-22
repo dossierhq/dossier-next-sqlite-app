@@ -18,11 +18,11 @@ export function usePublishedClient() {
 
 async function terminatingPublishedMiddleware(
   context: ClientContext,
-  operation: PublishedClientOperation
+  operation: PublishedClientOperation,
 ): Promise<void> {
   const result = await fetchJsonResult(
     context,
-    BackendUrls.published(operation.name, operation.args)
+    BackendUrls.published(operation.name, operation.args),
   );
   operation.resolve(convertJsonPublishedClientResult(operation.name, result));
 }
