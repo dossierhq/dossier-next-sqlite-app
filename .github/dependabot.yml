@@ -18,3 +18,11 @@ updates:
       dossier:
         patterns:
           - '@dossierhq/*'
+      eslint:
+        patterns:
+          - '@typescript-eslint/*'
+          - 'eslint'
+      next:
+        patterns:
+          - 'eslint-config-next'
+          - 'next'
