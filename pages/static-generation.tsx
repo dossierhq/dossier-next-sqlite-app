@@ -12,8 +12,8 @@ interface Props {
 }
 
 export default function StaticGenerationPage({ sampleResultJson }: Props): JSX.Element {
-  const sampleResult = convertJsonPublishedClientResult<'sampleEntities', AppPublishedClient>(
-    'sampleEntities',
+  const sampleResult = convertJsonPublishedClientResult<'getEntitiesSample', AppPublishedClient>(
+    'getEntitiesSample',
     convertJsonResult(JSON.parse(sampleResultJson)),
   );
   return (
@@ -32,6 +32,6 @@ export default function StaticGenerationPage({ sampleResultJson }: Props): JSX.E
 
 export const getStaticProps: GetStaticProps<Props> = async (_context) => {
   const publishedClient = await getPublishedClientForServerComponent();
-  const sampleResult = await publishedClient.sampleEntities({}, { count: 5 });
+  const sampleResult = await publishedClient.getEntitiesSample({}, { count: 5 });
   return { props: { sampleResultJson: JSON.stringify(sampleResult) } };
 };

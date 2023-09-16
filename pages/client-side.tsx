@@ -8,11 +8,11 @@ import type { AppPublishedClient } from '../types/SchemaTypes';
 export default function ClientSidePage(): JSX.Element {
   const publishedClient = usePublishedClient();
   const [sampleResult, setSampleResult] = useState<Awaited<
-    ReturnType<AppPublishedClient['sampleEntities']>
+    ReturnType<AppPublishedClient['getEntitiesSample']>
   > | null>(null);
 
   useEffect(() => {
-    publishedClient.sampleEntities({}, { count: 5 }).then(setSampleResult);
+    publishedClient.getEntitiesSample({}, { count: 5 }).then(setSampleResult);
   }, [publishedClient]);
 
   return (
