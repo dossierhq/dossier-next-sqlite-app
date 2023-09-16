@@ -5,7 +5,7 @@ import { getPublishedClientForServerComponent } from '../utils/BackendServerUtil
 
 export default async function Page() {
   const publishedClient = await getPublishedClientForServerComponent();
-  const sampleResult = await publishedClient.sampleEntities({}, { count: 5 });
+  const sampleResult = await publishedClient.getEntitiesSample({}, { count: 5 });
   return (
     <>
       <Navbar current="home" />

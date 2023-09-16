@@ -3,7 +3,7 @@ import type { AppPublishedClient } from '../../types/SchemaTypes';
 import styles from './EntitySampleDisplay.module.css';
 
 interface Props {
-  sampleResult: Awaited<ReturnType<AppPublishedClient['sampleEntities']>>;
+  sampleResult: Awaited<ReturnType<AppPublishedClient['getEntitiesSample']>>;
 }
 
 export function EntitySampleDisplay({ sampleResult }: Props) {

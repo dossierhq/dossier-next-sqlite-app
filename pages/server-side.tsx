@@ -13,8 +13,8 @@ interface Props {
 }
 
 export default function ServerSidePage({ sampleResultJson }: Props): JSX.Element {
-  const sampleResult = convertJsonPublishedClientResult<'sampleEntities', AppPublishedClient>(
-    'sampleEntities',
+  const sampleResult = convertJsonPublishedClientResult<'getEntitiesSample', AppPublishedClient>(
+    'getEntitiesSample',
     convertJsonResult(JSON.parse(sampleResultJson)),
   );
   return (
@@ -41,7 +41,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async (_context) =>
   let sampleResult;
   try {
     const publishedClient = await getPublishedClientForServerComponent();
-    sampleResult = await publishedClient.sampleEntities({}, { count: 5 });
+    sampleResult = await publishedClient.getEntitiesSample({}, { count: 5 });
   } catch (error) {
     sampleResult = notOk.GenericUnexpectedException({ logger: BACKEND_LOGGER }, error);
   }
