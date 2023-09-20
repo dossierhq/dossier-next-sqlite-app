@@ -8,7 +8,15 @@ interface Props {
 }
 
 interface Item {
-  id: 'home' | 'csr' | 'ssr' | 'ssg' | 'admin-entities' | 'published-entities' | 'schema';
+  id:
+    | 'home'
+    | 'csr'
+    | 'ssr'
+    | 'ssg'
+    | 'admin-entities'
+    | 'published-entities'
+    | 'changelog'
+    | 'schema';
   url: string;
   title: string;
   cssScope: 'app' | 'dossier';
@@ -25,6 +33,12 @@ const webInterfaceItems: Item[] = [
     id: 'published-entities',
     url: FrontendUrls.publishedEntities,
     title: 'Published entities',
+    cssScope: 'dossier',
+  },
+  {
+    id: 'changelog',
+    url: FrontendUrls.changelog,
+    title: 'Changelog',
     cssScope: 'dossier',
   },
   {
