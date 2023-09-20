@@ -1,4 +1,4 @@
-import { ChangelogScreen, SchemaEditorScreen } from '@dossierhq/react-components';
+import { ChangelogScreen } from '@dossierhq/react-components';
 import Head from 'next/head';
 import { AppAdminDossierProvider } from '../../contexts/AppAdminDossierProvider';
 import { useUrlSearchParams } from '../../hooks/useUrlSearchParams';
@@ -14,7 +14,11 @@ export default function ChangelogPage() {
         <Head>
           <title>Changelog | {process.env.NEXT_PUBLIC_SITE_NAME}</title>
         </Head>
-        <ChangelogScreen header={<Navbar current="changelog" />} />
+        <ChangelogScreen
+          header={<Navbar current="changelog" />}
+          urlSearchParams={urlSearchParams}
+          onUrlSearchParamsChange={onUrlSearchParamsChange}
+        />
       </AppAdminDossierProvider>
     </DossierWebInterfacePage>
   );
