@@ -9,16 +9,16 @@ import { FrontendUrls } from '../../utils/FrontendUrls';
 import { DossierWebInterfacePage } from '../DossierWebInterfacePage/DossierWebInterfacePage';
 import { Navbar } from '../Navbar/Navbar';
 
-export default function AdminEntitiesListPage(): JSX.Element | null {
+export default function ContentListPage(): JSX.Element | null {
   const router = useRouter();
   const { onUrlSearchParamsChange, urlSearchParams } = useUrlSearchParams();
 
   const handleCreateEntity = useCallback(
-    (type: string) => router.push(FrontendUrls.editPageNew(type, crypto.randomUUID())),
+    (type: string) => router.push(FrontendUrls.contentEditNew(type, crypto.randomUUID())),
     [router],
   );
   const handleEntityOpen = useCallback(
-    (entity: AdminEntity) => router.push(FrontendUrls.editPage([entity.id])),
+    (entity: AdminEntity) => router.push(FrontendUrls.contentEdit([entity.id])),
     [router],
   );
 
@@ -26,10 +26,10 @@ export default function AdminEntitiesListPage(): JSX.Element | null {
     <DossierWebInterfacePage>
       <AppAdminDossierProvider>
         <Head>
-          <title>Entities | {process.env.NEXT_PUBLIC_SITE_NAME}</title>
+          <title>Content | {process.env.NEXT_PUBLIC_SITE_NAME}</title>
         </Head>
         <AdminEntityListScreen
-          header={<Navbar current="admin-entities" />}
+          header={<Navbar current="content" />}
           urlSearchParams={urlSearchParams}
           onUrlSearchParamsChange={onUrlSearchParamsChange}
           onCreateEntity={handleCreateEntity}

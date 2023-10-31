@@ -8,14 +8,14 @@ import { FrontendUrls } from '../../utils/FrontendUrls';
 import { DossierWebInterfacePage } from '../DossierWebInterfacePage/DossierWebInterfacePage';
 import { Navbar } from '../Navbar/Navbar';
 
-export default function AdminEntityEditorPage(): JSX.Element {
+export default function ContentEditPage(): JSX.Element {
   const { onUrlSearchParamsChange, urlSearchParams } = useUrlSearchParams();
   const [hasChanges, setHasChanges] = useState(false);
 
   const shouldWarn = useMemo(() => {
     if (!hasChanges) return false;
     return (_fromUrl: string, toUrl: string) => {
-      return !FrontendUrls.isEditPage(toUrl);
+      return !FrontendUrls.isContentEdit(toUrl);
     };
   }, [hasChanges]);
 
@@ -25,10 +25,10 @@ export default function AdminEntityEditorPage(): JSX.Element {
     <DossierWebInterfacePage>
       <AppAdminDossierProvider>
         <Head>
-          <title>Edit entities | {process.env.NEXT_PUBLIC_SITE_NAME}</title>
+          <title>Edit content | {process.env.NEXT_PUBLIC_SITE_NAME}</title>
         </Head>
         <EntityEditorScreen
-          header={<Navbar current="admin-entities" />}
+          header={<Navbar current="content" />}
           urlSearchParams={urlSearchParams}
           onUrlSearchParamsChange={onUrlSearchParamsChange}
           onEditorHasChangesChange={setHasChanges}
