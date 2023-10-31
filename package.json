@@ -9,7 +9,7 @@
     "clean": "rm -rf .next/",
     "eslint:check": "eslint .",
     "eslint:fix": "eslint --fix .",
-    "generate:typescript": "ts-node -T --esm ./generate-typescript.ts",
+    "generate:typescript": "tsx ./generate-typescript.ts",
     "prettier:check": "prettier --check .",
     "prettier:fix": "prettier --write .",
     "start": "next dev",
@@ -37,7 +37,7 @@
     "eslint": "~8.52.0",
     "eslint-config-next": "~14.0.1",
     "prettier": "3.0.3",
-    "ts-node": "~10.9.1",
+    "tsx": "^3.14.0",
     "typescript": "~5.2.2"
   }
 }
