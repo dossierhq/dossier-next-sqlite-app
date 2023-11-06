@@ -30,7 +30,7 @@
     "react-dom": "~18.2.0"
   },
   "devDependencies": {
-    "@types/better-sqlite3": "^7.6.5",
+    "@types/better-sqlite3": "^7.6.6",
     "@types/react": "~18.2.33",
     "@typescript-eslint/eslint-plugin": "~6.9.0",
     "@typescript-eslint/parser": "~6.9.0",
