@@ -1,5 +1,5 @@
 import type { AdminEntity } from '@dossierhq/core';
-import { AdminEntityListScreen } from '@dossierhq/react-components';
+import { ContentListScreen } from '@dossierhq/react-components';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useCallback } from 'react';
@@ -28,7 +28,7 @@ export default function ContentListPage(): JSX.Element | null {
         <Head>
           <title>Content | {process.env.NEXT_PUBLIC_SITE_NAME}</title>
         </Head>
-        <AdminEntityListScreen
+        <ContentListScreen
           header={<Navbar current="content" />}
           urlSearchParams={urlSearchParams}
           onUrlSearchParamsChange={onUrlSearchParamsChange}

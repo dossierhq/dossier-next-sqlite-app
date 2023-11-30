@@ -1,4 +1,4 @@
-import { EntityEditorScreen } from '@dossierhq/react-components';
+import { ContentEditorScreen } from '@dossierhq/react-components';
 import Head from 'next/head';
 import { useMemo, useState } from 'react';
 import { AppAdminDossierProvider } from '../../contexts/AppAdminDossierProvider';
@@ -8,7 +8,7 @@ import { FrontendUrls } from '../../utils/FrontendUrls';
 import { DossierWebInterfacePage } from '../DossierWebInterfacePage/DossierWebInterfacePage';
 import { Navbar } from '../Navbar/Navbar';
 
-export default function ContentEditPage(): JSX.Element {
+export default function ContentEditorPage(): JSX.Element {
   const { onUrlSearchParamsChange, urlSearchParams } = useUrlSearchParams();
   const [hasChanges, setHasChanges] = useState(false);
 
@@ -27,7 +27,7 @@ export default function ContentEditPage(): JSX.Element {
         <Head>
           <title>Edit content | {process.env.NEXT_PUBLIC_SITE_NAME}</title>
         </Head>
-        <EntityEditorScreen
+        <ContentEditorScreen
           header={<Navbar current="content" />}
           urlSearchParams={urlSearchParams}
           onUrlSearchParamsChange={onUrlSearchParamsChange}

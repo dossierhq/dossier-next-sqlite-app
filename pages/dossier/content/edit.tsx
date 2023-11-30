@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic';
 
 const ContentEditPage = dynamic(
-  () => import('../../../components/ContentEditPage/ContentEditPage'),
+  () => import('../../../components/ContentEditorPage/ContentEditorPage'),
   { ssr: false },
 );
 

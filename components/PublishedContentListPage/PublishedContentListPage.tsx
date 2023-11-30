@@ -1,5 +1,5 @@
 import type { PublishedEntity } from '@dossierhq/core';
-import { PublishedEntityListScreen } from '@dossierhq/react-components';
+import { PublishedContentListScreen } from '@dossierhq/react-components';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useCallback } from 'react';
@@ -24,7 +24,7 @@ export default function PublishedContentListPage(): JSX.Element | null {
         <Head>
           <title>Published content | {process.env.NEXT_PUBLIC_SITE_NAME}</title>
         </Head>
-        <PublishedEntityListScreen
+        <PublishedContentListScreen
           header={<Navbar current="published-content" />}
           urlSearchParams={urlSearchParams}
           onUrlSearchParamsChange={onUrlSearchParamsChange}

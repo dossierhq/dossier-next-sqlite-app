@@ -1,4 +1,4 @@
-import { PublishedEntityDisplayScreen } from '@dossierhq/react-components';
+import { PublishedContentDisplayScreen } from '@dossierhq/react-components';
 import Head from 'next/head';
 import { AppPublishedDossierProvider } from '../../contexts/AppPublishedDossierProvider';
 import { useUrlSearchParams } from '../../hooks/useUrlSearchParams';
@@ -14,7 +14,7 @@ export default function PublishedContentDetailPage(): JSX.Element | null {
         <Head>
           <title>Published content | {process.env.NEXT_PUBLIC_SITE_NAME}</title>
         </Head>
-        <PublishedEntityDisplayScreen
+        <PublishedContentDisplayScreen
           header={<Navbar current="published-content" />}
           urlSearchParams={urlSearchParams}
           onUrlSearchParamsChange={onUrlSearchParamsChange}
