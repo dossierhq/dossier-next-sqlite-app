@@ -1,7 +1,7 @@
 import type {
   AdminDossierContextAdapter,
   FieldEditorProps,
-  RichTextValueItemEditorProps,
+  RichTextComponentEditorProps,
 } from '@dossierhq/react-components';
 import { AdminDossierProvider } from '@dossierhq/react-components';
 import { useMemo } from 'react';
@@ -13,7 +13,7 @@ class AdminContextAdapter implements AdminDossierContextAdapter {
     return null;
   }
 
-  renderAdminRichTextValueItemEditor(_props: RichTextValueItemEditorProps): JSX.Element | null {
+  renderAdminRichTextComponentEditor(_props: RichTextComponentEditorProps): JSX.Element | null {
     return null;
   }
 }

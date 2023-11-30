@@ -1,16 +1,13 @@
+import { createBetterSqlite3Adapter } from '@dossierhq/better-sqlite3';
 import { createConsoleLogger, type Logger } from '@dossierhq/core';
-import type { AuthorizationAdapter, Server } from '@dossierhq/server';
 import {
   BackgroundEntityProcessorPlugin,
   createServer,
   NoneAndSubjectAuthorizationAdapter,
+  type AuthorizationAdapter,
+  type Server,
 } from '@dossierhq/server';
-import { createDatabase, createSqlite3Adapter } from '@dossierhq/sqlite3';
-import * as Sqlite from 'sqlite3';
-import { OPEN_READONLY } from 'sqlite3';
-
-// TODO @types/sqlite is slightly wrong in terms of CommonJS/ESM export
-const { Database: SqliteDatabase } = (Sqlite as unknown as { default: typeof Sqlite }).default;
+import Database from 'better-sqlite3';
 
 const DEFAULT_AUTH_KEYS = ['none', 'subject'];
 
@@ -52,16 +49,12 @@ export async function getServerConnection(): Promise<{ server: Server }> {
 async function createDatabaseAdapter(logger: Logger) {
   const context = { logger };
   const filename = process.env.SQLITE_FILE ?? 'data/database.sqlite';
-  const readOnly = process.env.SQLITE_READONLY === 'true';
-  logger.info(`Using database file: ${filename}${readOnly ? ' (read-only)' : ''}`);
-  const databaseResult = await createDatabase(context, SqliteDatabase, {
-    filename,
-    mode: readOnly ? OPEN_READONLY : undefined,
-  });
-  if (databaseResult.isError()) return databaseResult;
+  const readonly = process.env.SQLITE_READONLY === 'true';
+  logger.info(`Using database file: ${filename}${readonly ? ' (read-only)' : ''}`);
+  const database = new Database(filename, { readonly });
 
-  const databaseAdapterResult = await createSqlite3Adapter(context, databaseResult.value, {
-    migrate: !readOnly,
+  const databaseAdapterResult = await createBetterSqlite3Adapter(context, database, {
+    migrate: !readonly,
     fts: { version: 'fts5' },
     journalMode: 'wal',
   });

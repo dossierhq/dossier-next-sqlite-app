@@ -10,7 +10,7 @@ export default async function Page() {
     <>
       <Navbar current="home" />
       <section className={styles.container}>
-        <h1 className={styles.header}>Using Dossier in Server Component (app/ directory)</h1>
+        <h1 className={styles.header}>Using Dossier in App Router</h1>
         <EntitySampleDisplay sampleResult={sampleResult} />
       </section>
     </>

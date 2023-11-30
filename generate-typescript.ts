@@ -4,7 +4,7 @@ import type { Server } from '@dossierhq/server';
 import { generateTypescriptForSchema } from '@dossierhq/typescript-generator';
 import { execFileSync } from 'node:child_process';
 import { mkdir, writeFile } from 'node:fs/promises';
-import { getServerConnection, SYSTEM_USERS } from './utils/ServerUtils';
+import { getServerConnection, SYSTEM_USERS } from './utils/ServerUtils.js';
 
 async function generateTypes(adminSchema: AdminSchema, filename: string) {
   const publishedSchema = adminSchema.toPublishedSchema();
