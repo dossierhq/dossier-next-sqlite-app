@@ -2,3 +2,4 @@
 /.next/
 /.vercel/
 /coverage/
+package-lock.json
