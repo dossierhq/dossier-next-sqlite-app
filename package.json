@@ -16,28 +16,28 @@
     "start:production": "next start"
   },
   "dependencies": {
-    "@dossierhq/better-sqlite3": "~0.5.1",
-    "@dossierhq/core": "~0.5.1",
-    "@dossierhq/design": "~0.5.1",
-    "@dossierhq/leaflet": "~0.5.1",
-    "@dossierhq/react-components": "~0.5.1",
-    "@dossierhq/server": "~0.5.1",
-    "@dossierhq/typescript-generator": "~0.5.1",
-    "better-sqlite3": "^9.1.1",
+    "@dossierhq/better-sqlite3": "~0.5.14",
+    "@dossierhq/core": "~0.5.14",
+    "@dossierhq/design": "~0.5.14",
+    "@dossierhq/leaflet": "~0.5.14",
+    "@dossierhq/react-components": "~0.5.14",
+    "@dossierhq/server": "~0.5.14",
+    "@dossierhq/typescript-generator": "~0.5.14",
+    "better-sqlite3": "^9.4.3",
     "leaflet": "~1.9.4",
-    "next": "~14.0.3",
+    "next": "~14.1.0",
     "react": "~18.2.0",
     "react-dom": "~18.2.0"
   },
   "devDependencies": {
-    "@types/better-sqlite3": "^7.6.8",
-    "@types/react": "~18.2.38",
-    "@typescript-eslint/eslint-plugin": "~6.12.0",
-    "@typescript-eslint/parser": "~6.12.0",
-    "eslint": "~8.54.0",
-    "eslint-config-next": "~14.0.3",
-    "prettier": "3.1.0",
-    "tsx": "^4.5.0",
-    "typescript": "~5.3.2"
+    "@types/better-sqlite3": "^7.6.9",
+    "@types/react": "~18.2.58",
+    "@typescript-eslint/eslint-plugin": "~7.0.2",
+    "@typescript-eslint/parser": "~7.0.2",
+    "eslint": "~8.56.0",
+    "eslint-config-next": "~14.1.0",
+    "prettier": "3.2.5",
+    "tsx": "^4.7.1",
+    "typescript": "~5.3.3"
   }
 }
