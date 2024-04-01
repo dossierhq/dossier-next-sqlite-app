@@ -5,7 +5,6 @@ import type {
 } from '@dossierhq/react-components';
 import { AdminDossierProvider } from '@dossierhq/react-components';
 import { useMemo } from 'react';
-import { DISPLAY_AUTH_KEYS } from '../config/AuthKeyConfig';
 import { useAdminClient } from '../hooks/useAdminClient';
 
 class AdminContextAdapter implements AdminDossierContextAdapter {
@@ -25,7 +24,6 @@ export function AppAdminDossierProvider({ children }: { children: React.ReactNod
     () => ({
       adminClient,
       adapter: new AdminContextAdapter(),
-      authKeys: DISPLAY_AUTH_KEYS,
     }),
     [adminClient],
   );

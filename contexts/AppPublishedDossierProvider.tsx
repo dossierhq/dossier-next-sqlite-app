@@ -5,7 +5,6 @@ import type {
 } from '@dossierhq/react-components';
 import { PublishedDossierProvider } from '@dossierhq/react-components';
 import { useMemo } from 'react';
-import { DISPLAY_AUTH_KEYS } from '../config/AuthKeyConfig';
 import { usePublishedClient } from '../hooks/usePublishedClient';
 
 class PublishedContextAdapter implements PublishedDossierContextAdapter {
@@ -26,7 +25,6 @@ export function AppPublishedDossierProvider({ children }: { children: React.Reac
     () => ({
       publishedClient,
       adapter: new PublishedContextAdapter(),
-      authKeys: DISPLAY_AUTH_KEYS,
     }),
     [publishedClient],
   );

@@ -1,21 +1,12 @@
 import { createBetterSqlite3Adapter } from '@dossierhq/better-sqlite3';
 import { createConsoleLogger, type Logger } from '@dossierhq/core';
-import {
-  BackgroundEntityProcessorPlugin,
-  createServer,
-  NoneAndSubjectAuthorizationAdapter,
-  type AuthorizationAdapter,
-  type Server,
-} from '@dossierhq/server';
+import { BackgroundEntityProcessorPlugin, createServer, type Server } from '@dossierhq/server';
 import Database from 'better-sqlite3';
-
-const DEFAULT_AUTH_KEYS = ['none', 'subject'];
 
 export const SYSTEM_USERS = {
   anonymous: {
     provider: 'sys',
     identifier: 'anonymous',
-    defaultAuthKeys: DEFAULT_AUTH_KEYS,
   },
 } as const;
 
@@ -30,7 +21,6 @@ export async function getServerConnection(): Promise<{ server: Server }> {
       const server = (
         await createServer({
           databaseAdapter,
-          authorizationAdapter: createAuthenticationAdapter(),
           logger,
         })
       ).valueOrThrow();
@@ -59,8 +49,4 @@ async function createDatabaseAdapter(logger: Logger) {
     journalMode: 'wal',
   });
   return databaseAdapterResult;
-}
-
-function createAuthenticationAdapter(): AuthorizationAdapter {
-  return NoneAndSubjectAuthorizationAdapter;
 }
