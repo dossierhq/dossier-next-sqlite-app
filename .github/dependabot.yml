@@ -21,7 +21,7 @@ updates:
       eslint:
         patterns:
           - '@typescript-eslint/*'
-          - 'eslint'
+          # skip until supported by typescript-eslint:  - 'eslint'
       next:
         patterns:
           - 'eslint-config-next'
