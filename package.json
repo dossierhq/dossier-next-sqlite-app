@@ -23,7 +23,7 @@
     "@dossierhq/react-components": "~0.6.2",
     "@dossierhq/server": "~0.6.2",
     "@dossierhq/typescript-generator": "~0.6.2",
-    "better-sqlite3": "^9.5.0",
+    "better-sqlite3": "^9.6.0",
     "leaflet": "~1.9.4",
     "next": "~14.2.3",
     "react": "~18.2.0",
