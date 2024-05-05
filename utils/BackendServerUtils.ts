@@ -16,7 +16,7 @@ export function getPublishedClientForServerComponent(): Promise<AppPublishedDoss
         logger: null,
         databasePerformance: null,
       });
-      return server.createPublishedClient<AppPublishedDossierClient>(
+      return server.createPublishedDossierClient<AppPublishedDossierClient>(
         authResult.valueOrThrow().context,
       );
     })();
@@ -44,6 +44,6 @@ export async function getSessionContextForRequest(
   }
   const { context } = sessionResult.value;
   const client = server.createDossierClient<AppDossierClient>(context);
-  const publishedClient = server.createPublishedClient<AppPublishedDossierClient>(context);
+  const publishedClient = server.createPublishedDossierClient<AppPublishedDossierClient>(context);
   return ok({ client, publishedClient });
 }
