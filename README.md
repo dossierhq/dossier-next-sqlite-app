@@ -7,7 +7,7 @@ and [SQLite](https://www.sqlite.org/).
 
 In order to keep things as simple as possible, this template doesn't have any auth. I.e. there's no
 need to login and all users use the same anonymous user. In order to protect the data, in production
-(`npm run start:production`) only read-only published content can be accessed, and the Dossier web
+(`pnpm run start:production`) only read-only published content can be accessed, and the Dossier web
 interface is disabled.
 
 > **Warning**
@@ -20,9 +20,9 @@ interface is disabled.
 - `npm init using dossierhq/dossier-next-sqlite-app my-project`
 - `cd my-project`
 - `git init && git add . && git commit -m '🚀 Created project 🚀'`
-- `npm install`
-- `npm run build`
-- `npm start`
+- `pnpm install`
+- `pnpm run build`
+- `pnpm start`
 
 You should now have a working app running at http://localhost:3000. Try to add an entity type to the
 schema and create some entities.
