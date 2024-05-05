@@ -1,18 +1,18 @@
-import type { AdminClientOperation, ClientContext, ErrorType, Result } from '@dossierhq/core';
-import { convertJsonAdminClientResult, createBaseAdminClient } from '@dossierhq/core';
-import { useCachingAdminMiddleware } from '@dossierhq/react-components';
+import type { ClientContext, DossierClientOperation, ErrorType, Result } from '@dossierhq/core';
+import { convertJsonDossierClientResult, createBaseDossierClient } from '@dossierhq/core';
+import { useCachingDossierMiddleware } from '@dossierhq/react-components';
 import { useMemo } from 'react';
 import { FRONTEND_LOGGER } from '../config/LoggingConfig';
-import type { AppAdminClient } from '../types/SchemaTypes';
+import type { AppDossierClient } from '../types/SchemaTypes';
 import { BackendUrls } from '../utils/BackendUrls';
 import { fetchJsonResult } from '../utils/FetchUtils';
 
 export function useAdminClient() {
-  const cachingMiddleware = useCachingAdminMiddleware();
+  const cachingMiddleware = useCachingDossierMiddleware();
 
   return useMemo(() => {
     const context = { logger: FRONTEND_LOGGER };
-    return createBaseAdminClient<ClientContext, AppAdminClient>({
+    return createBaseDossierClient<ClientContext, AppDossierClient>({
       context,
       pipeline: [cachingMiddleware, terminatingAdminMiddleware],
     });
@@ -21,7 +21,7 @@ export function useAdminClient() {
 
 async function terminatingAdminMiddleware(
   context: ClientContext,
-  operation: AdminClientOperation,
+  operation: DossierClientOperation,
 ): Promise<void> {
   let result: Result<unknown, ErrorType>;
   if (operation.modifies) {
@@ -33,5 +33,5 @@ async function terminatingAdminMiddleware(
   } else {
     result = await fetchJsonResult(context, BackendUrls.admin(operation.name, operation.args));
   }
-  operation.resolve(convertJsonAdminClientResult(operation.name, result));
+  operation.resolve(convertJsonDossierClientResult(operation.name, result));
 }

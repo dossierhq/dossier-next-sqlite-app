@@ -16,13 +16,12 @@
     "start:production": "next start"
   },
   "dependencies": {
-    "@dossierhq/better-sqlite3": "~0.6.2",
-    "@dossierhq/core": "~0.6.2",
-    "@dossierhq/design": "~0.6.2",
-    "@dossierhq/leaflet": "~0.6.2",
-    "@dossierhq/react-components": "~0.6.2",
-    "@dossierhq/server": "~0.6.2",
-    "@dossierhq/typescript-generator": "~0.6.2",
+    "@dossierhq/better-sqlite3": "~0.7.1",
+    "@dossierhq/core": "~0.7.1",
+    "@dossierhq/design": "~0.7.1",
+    "@dossierhq/leaflet": "~0.7.1",
+    "@dossierhq/react-components": "~0.7.1",
+    "@dossierhq/server": "~0.7.1",
     "better-sqlite3": "^9.6.0",
     "leaflet": "~1.9.4",
     "next": "~14.2.3",
@@ -30,6 +29,7 @@
     "react-dom": "~18.3.1"
   },
   "devDependencies": {
+    "@dossierhq/typescript-generator": "~0.7.1",
     "@types/better-sqlite3": "^7.6.10",
     "@types/react": "~18.3.1",
     "@typescript-eslint/eslint-plugin": "~7.8.0",
@@ -39,5 +39,6 @@
     "prettier": "3.2.5",
     "tsx": "^4.9.0",
     "typescript": "~5.4.5"
-  }
+  },
+  "packageManager": "pnpm@9.0.6+sha256.0624e30eff866cdeb363b15061bdb7fd9425b17bc1bb42c22f5f4efdea21f6b3"
 }

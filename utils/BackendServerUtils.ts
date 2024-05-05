@@ -2,12 +2,12 @@ import type { ErrorType, PromiseResult } from '@dossierhq/core';
 import { notOk, ok } from '@dossierhq/core';
 import type { Server } from '@dossierhq/server';
 import type { NextApiRequest } from 'next';
-import type { AppAdminClient, AppPublishedClient } from '../types/SchemaTypes';
+import type { AppDossierClient, AppPublishedDossierClient } from '../types/SchemaTypes';
 import { getServerConnection, SYSTEM_USERS } from './ServerUtils';
 
-let publishedClientPromise: Promise<AppPublishedClient> | null = null;
+let publishedClientPromise: Promise<AppPublishedDossierClient> | null = null;
 
-export function getPublishedClientForServerComponent(): Promise<AppPublishedClient> {
+export function getPublishedClientForServerComponent(): Promise<AppPublishedDossierClient> {
   if (!publishedClientPromise) {
     publishedClientPromise = (async () => {
       const { server } = await getServerConnection();
@@ -16,7 +16,9 @@ export function getPublishedClientForServerComponent(): Promise<AppPublishedClie
         logger: null,
         databasePerformance: null,
       });
-      return server.createPublishedClient<AppPublishedClient>(authResult.valueOrThrow().context);
+      return server.createPublishedClient<AppPublishedDossierClient>(
+        authResult.valueOrThrow().context,
+      );
     })();
   }
   return publishedClientPromise;
@@ -26,7 +28,7 @@ export async function getSessionContextForRequest(
   server: Server,
   req: NextApiRequest,
 ): PromiseResult<
-  { adminClient: AppAdminClient; publishedClient: AppPublishedClient },
+  { adminClient: AppDossierClient; publishedClient: AppPublishedDossierClient },
   typeof ErrorType.NotAuthenticated
 > {
   //TODO actually authenticate, currently just using anonymous for everything
@@ -41,7 +43,7 @@ export async function getSessionContextForRequest(
     );
   }
   const { context } = sessionResult.value;
-  const adminClient = server.createAdminClient<AppAdminClient>(context);
-  const publishedClient = server.createPublishedClient<AppPublishedClient>(context);
+  const adminClient = server.createDossierClient<AppDossierClient>(context);
+  const publishedClient = server.createPublishedClient<AppPublishedDossierClient>(context);
   return ok({ adminClient, publishedClient });
 }

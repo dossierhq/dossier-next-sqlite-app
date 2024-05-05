@@ -3,12 +3,12 @@ import { EntitySampleDisplay } from '../components/EntitySampleDisplay/EntitySam
 import { Navbar } from '../components/Navbar/Navbar';
 import { usePublishedClient } from '../hooks/usePublishedClient';
 import styles from '../styles/info-page.module.css';
-import type { AppPublishedClient } from '../types/SchemaTypes';
+import type { AppPublishedDossierClient } from '../types/SchemaTypes';
 
 export default function ClientSidePage(): JSX.Element {
   const publishedClient = usePublishedClient();
   const [sampleResult, setSampleResult] = useState<Awaited<
-    ReturnType<AppPublishedClient['getEntitiesSample']>
+    ReturnType<AppPublishedDossierClient['getEntitiesSample']>
   > | null>(null);
 
   useEffect(() => {

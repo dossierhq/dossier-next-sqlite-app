@@ -1,7 +1,7 @@
-import type { ErrorType, PublishedClientJsonOperationArgs, Result } from '@dossierhq/core';
+import type { ErrorType, JsonPublishedDossierClientOperationArgs, Result } from '@dossierhq/core';
 import {
   decodeURLSearchParamsParam,
-  executePublishedClientOperationFromJson,
+  executeJsonPublishedDossierClientOperation,
   notOk,
   ok,
 } from '@dossierhq/core';
@@ -25,8 +25,8 @@ export default async function publishedOperationHandler(
 
 function getOperationArgs(
   req: NextApiRequest,
-): Result<PublishedClientJsonOperationArgs, typeof ErrorType.BadRequest> {
-  const operationArgs = decodeURLSearchParamsParam<PublishedClientJsonOperationArgs>(
+): Result<JsonPublishedDossierClientOperationArgs, typeof ErrorType.BadRequest> {
+  const operationArgs = decodeURLSearchParamsParam<JsonPublishedDossierClientOperationArgs>(
     req.query,
     'args',
   );
@@ -48,7 +48,7 @@ async function executePublishedOperation(req: NextApiRequest) {
   if (authResult.isError()) return authResult;
   const { publishedClient } = authResult.value;
 
-  const result = await executePublishedClientOperationFromJson(
+  const result = await executeJsonPublishedDossierClientOperation(
     publishedClient,
     operationName,
     operationResult.value,

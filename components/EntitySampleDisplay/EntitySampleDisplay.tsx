@@ -1,9 +1,9 @@
 import type { PublishedEntity } from '@dossierhq/core';
-import type { AppPublishedClient } from '../../types/SchemaTypes';
+import type { AppPublishedDossierClient } from '../../types/SchemaTypes';
 import styles from './EntitySampleDisplay.module.css';
 
 interface Props {
-  sampleResult: Awaited<ReturnType<AppPublishedClient['getEntitiesSample']>>;
+  sampleResult: Awaited<ReturnType<AppPublishedDossierClient['getEntitiesSample']>>;
 }
 
 export function EntitySampleDisplay({ sampleResult }: Props) {

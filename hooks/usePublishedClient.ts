@@ -1,15 +1,19 @@
-import type { ClientContext, PublishedClientOperation } from '@dossierhq/core';
-import { convertJsonPublishedClientResult, createBasePublishedClient } from '@dossierhq/core';
+import {
+  convertJsonPublishedDossierClientResult,
+  createBasePublishedDossierClient,
+  type ClientContext,
+  type PublishedDossierClientOperation,
+} from '@dossierhq/core';
 import { useMemo } from 'react';
 import { FRONTEND_LOGGER } from '../config/LoggingConfig';
-import type { AppPublishedClient } from '../types/SchemaTypes';
+import type { AppPublishedDossierClient } from '../types/SchemaTypes';
 import { BackendUrls } from '../utils/BackendUrls';
 import { fetchJsonResult } from '../utils/FetchUtils';
 
 export function usePublishedClient() {
   return useMemo(() => {
     const context = { logger: FRONTEND_LOGGER };
-    return createBasePublishedClient<ClientContext, AppPublishedClient>({
+    return createBasePublishedDossierClient<ClientContext, AppPublishedDossierClient>({
       context,
       pipeline: [terminatingPublishedMiddleware],
     });
@@ -18,11 +22,11 @@ export function usePublishedClient() {
 
 async function terminatingPublishedMiddleware(
   context: ClientContext,
-  operation: PublishedClientOperation,
+  operation: PublishedDossierClientOperation,
 ): Promise<void> {
   const result = await fetchJsonResult(
     context,
     BackendUrls.published(operation.name, operation.args),
   );
-  operation.resolve(convertJsonPublishedClientResult(operation.name, result));
+  operation.resolve(convertJsonPublishedDossierClientResult(operation.name, result));
 }

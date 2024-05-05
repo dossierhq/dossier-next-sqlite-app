@@ -1,36 +1,36 @@
 import type {
-  AdminDossierContextAdapter,
+  DossierContextAdapter,
   FieldEditorProps,
   RichTextComponentEditorProps,
 } from '@dossierhq/react-components';
-import { AdminDossierProvider } from '@dossierhq/react-components';
+import { DossierProvider } from '@dossierhq/react-components';
 import { useMemo } from 'react';
 import { useAdminClient } from '../hooks/useAdminClient';
 
-class AdminContextAdapter implements AdminDossierContextAdapter {
-  renderAdminFieldEditor(_props: FieldEditorProps): JSX.Element | null {
+class AdminContextAdapter implements DossierContextAdapter {
+  renderFieldEditor(_props: FieldEditorProps): JSX.Element | null {
     return null;
   }
 
-  renderAdminRichTextComponentEditor(_props: RichTextComponentEditorProps): JSX.Element | null {
+  renderRichTextComponentEditor(_props: RichTextComponentEditorProps): JSX.Element | null {
     return null;
   }
 }
 
 export function AppAdminDossierProvider({ children }: { children: React.ReactNode }) {
-  const adminClient = useAdminClient();
+  const client = useAdminClient();
 
   const args = useMemo(
     () => ({
-      adminClient,
+      client,
       adapter: new AdminContextAdapter(),
     }),
-    [adminClient],
+    [client],
   );
 
   return (
-    <AdminDossierProvider {...args} adminClient={adminClient}>
+    <DossierProvider {...args} client={client}>
       {children}
-    </AdminDossierProvider>
+    </DossierProvider>
   );
 }
