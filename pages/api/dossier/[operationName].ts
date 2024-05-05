@@ -12,7 +12,7 @@ import { getSessionContextForRequest } from '../../../utils/BackendServerUtils';
 import { handleRequest, sendMethodNotAllowedError } from '../../../utils/HandlerUtils';
 import { getServerConnection } from '../../../utils/ServerUtils';
 
-export default async function adminOperationHandler(
+export default async function dossierOperationHandler(
   req: NextApiRequest,
   res: NextApiResponse,
 ): Promise<void> {
@@ -21,7 +21,7 @@ export default async function adminOperationHandler(
       if (!ENABLE_WEB_INTERFACE) {
         return notOk.BadRequest('Web interface is disabled');
       }
-      return executeAdminOperation(req);
+      return executeDossierOperation(req);
     });
   } else {
     sendMethodNotAllowedError(res, ['GET', 'PUT']);
@@ -43,7 +43,7 @@ function getOperationArgs(
   return ok(operationArgs);
 }
 
-async function executeAdminOperation(req: NextApiRequest) {
+async function executeDossierOperation(req: NextApiRequest) {
   const { operationName } = req.query;
   if (typeof operationName !== 'string') return notOk.BadRequest('Operation name not provided');
 
@@ -53,7 +53,7 @@ async function executeAdminOperation(req: NextApiRequest) {
   const { server } = await getServerConnection();
   const authResult = await getSessionContextForRequest(server, req);
   if (authResult.isError()) return authResult;
-  const { adminClient } = authResult.value;
+  const { client } = authResult.value;
 
   const operationModifies = DossierClientModifyingOperations.has(operationName);
   if (req.method === 'GET' && operationModifies) {
@@ -63,7 +63,7 @@ async function executeAdminOperation(req: NextApiRequest) {
   }
 
   const result = await executeJsonDossierClientOperation(
-    adminClient,
+    client,
     operationName,
     operationResult.value,
   );

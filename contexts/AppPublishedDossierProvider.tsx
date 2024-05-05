@@ -5,7 +5,7 @@ import type {
 } from '@dossierhq/react-components';
 import { PublishedDossierProvider } from '@dossierhq/react-components';
 import { useMemo } from 'react';
-import { usePublishedClient } from '../hooks/usePublishedClient';
+import { usePublishedDossierClient } from '../hooks/usePublishedDossierClient';
 
 class PublishedContextAdapter implements PublishedDossierContextAdapter {
   renderPublishedFieldDisplay(_props: FieldDisplayProps): JSX.Element | null {
@@ -20,7 +20,7 @@ class PublishedContextAdapter implements PublishedDossierContextAdapter {
 }
 
 export function AppPublishedDossierProvider({ children }: { children: React.ReactNode }) {
-  const publishedClient = usePublishedClient();
+  const publishedClient = usePublishedDossierClient();
   const args = useMemo(
     () => ({
       publishedClient,

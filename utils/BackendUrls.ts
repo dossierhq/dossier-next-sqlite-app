@@ -9,19 +9,19 @@ import {
 const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export const BackendUrls = {
-  admin: (
+  dossier: (
     operationName: (typeof DossierClientOperationName)[keyof typeof DossierClientOperationName],
     args?: JsonDossierClientOperationArgs,
   ): string =>
-    `${baseUrl}/admin/${operationName}?${encodeObjectToURLSearchParams(
+    `${baseUrl}/dossier/${operationName}?${encodeObjectToURLSearchParams(
       { args },
       { keepEmptyObjects: true },
     )}`,
-  published: (
+  publishedDossier: (
     operationName: (typeof PublishedDossierClientOperationName)[keyof typeof PublishedDossierClientOperationName],
     args?: JsonPublishedDossierClientOperationArgs,
   ): string =>
-    `${baseUrl}/published/${operationName}?${encodeObjectToURLSearchParams(
+    `${baseUrl}/published-dossier/${operationName}?${encodeObjectToURLSearchParams(
       { args },
       { keepEmptyObjects: true },
     )}`,

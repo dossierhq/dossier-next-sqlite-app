@@ -5,9 +5,9 @@ import type {
 } from '@dossierhq/react-components';
 import { DossierProvider } from '@dossierhq/react-components';
 import { useMemo } from 'react';
-import { useAdminClient } from '../hooks/useAdminClient';
+import { useDossierClient } from '../hooks/useDossierClient';
 
-class AdminContextAdapter implements DossierContextAdapter {
+class AppContextAdapter implements DossierContextAdapter {
   renderFieldEditor(_props: FieldEditorProps): JSX.Element | null {
     return null;
   }
@@ -17,13 +17,13 @@ class AdminContextAdapter implements DossierContextAdapter {
   }
 }
 
-export function AppAdminDossierProvider({ children }: { children: React.ReactNode }) {
-  const client = useAdminClient();
+export function AppDossierProvider({ children }: { children: React.ReactNode }) {
+  const client = useDossierClient();
 
   const args = useMemo(
     () => ({
       client,
-      adapter: new AdminContextAdapter(),
+      adapter: new AppContextAdapter(),
     }),
     [client],
   );

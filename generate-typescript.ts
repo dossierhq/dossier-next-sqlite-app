@@ -28,10 +28,10 @@ async function getSchema(server: Server) {
 async function main() {
   const { server } = await getServerConnection();
   try {
-    const adminSchema = await getSchema(server);
+    const schema = await getSchema(server);
 
     await mkdir('./types', { recursive: true });
-    await generateTypes(adminSchema, './types/SchemaTypes.ts');
+    await generateTypes(schema, './types/SchemaTypes.ts');
   } finally {
     await server.shutdown();
   }

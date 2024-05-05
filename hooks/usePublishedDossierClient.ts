@@ -10,7 +10,7 @@ import type { AppPublishedDossierClient } from '../types/SchemaTypes';
 import { BackendUrls } from '../utils/BackendUrls';
 import { fetchJsonResult } from '../utils/FetchUtils';
 
-export function usePublishedClient() {
+export function usePublishedDossierClient() {
   return useMemo(() => {
     const context = { logger: FRONTEND_LOGGER };
     return createBasePublishedDossierClient<ClientContext, AppPublishedDossierClient>({
@@ -26,7 +26,7 @@ async function terminatingPublishedMiddleware(
 ): Promise<void> {
   const result = await fetchJsonResult(
     context,
-    BackendUrls.published(operation.name, operation.args),
+    BackendUrls.publishedDossier(operation.name, operation.args),
   );
   operation.resolve(convertJsonPublishedDossierClientResult(operation.name, result));
 }

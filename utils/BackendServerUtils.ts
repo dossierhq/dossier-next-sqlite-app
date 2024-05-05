@@ -28,7 +28,7 @@ export async function getSessionContextForRequest(
   server: Server,
   req: NextApiRequest,
 ): PromiseResult<
-  { adminClient: AppDossierClient; publishedClient: AppPublishedDossierClient },
+  { client: AppDossierClient; publishedClient: AppPublishedDossierClient },
   typeof ErrorType.NotAuthenticated
 > {
   //TODO actually authenticate, currently just using anonymous for everything
@@ -43,7 +43,7 @@ export async function getSessionContextForRequest(
     );
   }
   const { context } = sessionResult.value;
-  const adminClient = server.createDossierClient<AppDossierClient>(context);
+  const client = server.createDossierClient<AppDossierClient>(context);
   const publishedClient = server.createPublishedClient<AppPublishedDossierClient>(context);
-  return ok({ adminClient, publishedClient });
+  return ok({ client, publishedClient });
 }

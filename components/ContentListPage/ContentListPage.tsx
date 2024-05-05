@@ -3,7 +3,7 @@ import { ContentListScreen } from '@dossierhq/react-components';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useCallback } from 'react';
-import { AppAdminDossierProvider } from '../../contexts/AppAdminDossierProvider';
+import { AppDossierProvider } from '../../contexts/AppDossierProvider';
 import { useUrlSearchParams } from '../../hooks/useUrlSearchParams';
 import { FrontendUrls } from '../../utils/FrontendUrls';
 import { DossierWebInterfacePage } from '../DossierWebInterfacePage/DossierWebInterfacePage';
@@ -24,7 +24,7 @@ export default function ContentListPage(): JSX.Element | null {
 
   return (
     <DossierWebInterfacePage>
-      <AppAdminDossierProvider>
+      <AppDossierProvider>
         <Head>
           <title>Content | {process.env.NEXT_PUBLIC_SITE_NAME}</title>
         </Head>
@@ -35,7 +35,7 @@ export default function ContentListPage(): JSX.Element | null {
           onCreateEntity={handleCreateEntity}
           onOpenEntity={handleEntityOpen}
         />
-      </AppAdminDossierProvider>
+      </AppDossierProvider>
     </DossierWebInterfacePage>
   );
 }
