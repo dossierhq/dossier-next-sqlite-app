@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@dossierhq/better-sqlite3':
         specifier: ~0.7.7
-        version: 0.7.7(@dossierhq/core@0.7.7)(@types/better-sqlite3@7.6.10)(better-sqlite3@11.1.1)
+        version: 0.7.7(@dossierhq/core@0.7.7)(@types/better-sqlite3@7.6.10)(better-sqlite3@11.1.2)
       '@dossierhq/core':
         specifier: ~0.7.7
         version: 0.7.7
@@ -27,8 +27,8 @@ importers:
         specifier: ~0.7.7
         version: 0.7.7(@dossierhq/core@0.7.7)
       better-sqlite3:
-        specifier: ^11.1.1
-        version: 11.1.1
+        specifier: ^11.1.2
+        version: 11.1.2
       leaflet:
         specifier: ~1.9.4
         version: 1.9.4
@@ -1204,8 +1204,8 @@ packages:
   base64-js@1.5.1:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
 
-  better-sqlite3@11.1.1:
-    resolution: {integrity: sha512-bAlQQb7gwCgxNpDYafK0O4AaIOiTwA7srfqRtBbw0Nsiq6P+qxEYGl3hLw+9C5jX2FVjKW7oxkSouxlJ+3VX8A==}
+  better-sqlite3@11.1.2:
+    resolution: {integrity: sha512-gujtFwavWU4MSPT+h9B+4pkvZdyOUkH54zgLdIrMmmmd4ZqiBIrRNBzNzYVFO417xo882uP5HBu4GjOfaSrIQw==}
 
   bindings@1.5.0:
     resolution: {integrity: sha512-p2q/t/mhvuOj/UeLlV6566GD/guowlr0hHxClI0W9m7MWYkL1F0hLo+0Aexs9HSPCtR1SXQ0TD3MMKrXZajbiQ==}
@@ -2434,12 +2434,12 @@ snapshots:
 
   '@creativebulma/bulma-badge@1.0.1': {}
 
-  '@dossierhq/better-sqlite3@0.7.7(@dossierhq/core@0.7.7)(@types/better-sqlite3@7.6.10)(better-sqlite3@11.1.1)':
+  '@dossierhq/better-sqlite3@0.7.7(@dossierhq/core@0.7.7)(@types/better-sqlite3@7.6.10)(better-sqlite3@11.1.2)':
     dependencies:
       '@dossierhq/core': 0.7.7
       '@dossierhq/sqlite-core': 0.7.7(@dossierhq/core@0.7.7)
       '@types/better-sqlite3': 7.6.10
-      better-sqlite3: 11.1.1
+      better-sqlite3: 11.1.2
       tslib: 2.6.3
 
   '@dossierhq/core@0.7.7':
@@ -4040,7 +4040,7 @@ snapshots:
 
   base64-js@1.5.1: {}
 
-  better-sqlite3@11.1.1:
+  better-sqlite3@11.1.2:
     dependencies:
       bindings: 1.5.0
       prebuild-install: 7.1.2
