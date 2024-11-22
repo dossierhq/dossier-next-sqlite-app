@@ -4,7 +4,7 @@ import type {
   RichTextComponentDisplayProps,
 } from '@dossierhq/react-components';
 import { PublishedDossierProvider } from '@dossierhq/react-components';
-import { useMemo } from 'react';
+import { useMemo, type JSX } from 'react';
 import { usePublishedDossierClient } from '../hooks/usePublishedDossierClient';
 
 class PublishedContextAdapter implements PublishedDossierContextAdapter {

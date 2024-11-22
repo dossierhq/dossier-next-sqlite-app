@@ -1,6 +1,7 @@
 import { convertJsonPublishedDossierClientResult, convertJsonResult } from '@dossierhq/core';
 import type { GetStaticProps } from 'next';
 import Head from 'next/head';
+import type { JSX } from 'react';
 import { EntitySampleDisplay } from '../components/EntitySampleDisplay/EntitySampleDisplay';
 import { Navbar } from '../components/Navbar/Navbar';
 import styles from '../styles/info-page.module.css';

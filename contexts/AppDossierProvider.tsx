@@ -4,7 +4,7 @@ import type {
   RichTextComponentEditorProps,
 } from '@dossierhq/react-components';
 import { DossierProvider } from '@dossierhq/react-components';
-import { useMemo } from 'react';
+import { useMemo, type JSX } from 'react';
 import { useDossierClient } from '../hooks/useDossierClient';
 
 class AppContextAdapter implements DossierContextAdapter {

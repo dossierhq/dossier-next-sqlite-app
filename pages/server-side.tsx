@@ -1,6 +1,7 @@
 import { convertJsonPublishedDossierClientResult, convertJsonResult, notOk } from '@dossierhq/core';
 import type { GetServerSideProps } from 'next';
 import Head from 'next/head';
+import type { JSX } from 'react';
 import { EntitySampleDisplay } from '../components/EntitySampleDisplay/EntitySampleDisplay';
 import { Navbar } from '../components/Navbar/Navbar';
 import { BACKEND_LOGGER } from '../config/LoggingConfig';

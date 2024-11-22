@@ -1,6 +1,6 @@
 import { ContentEditorScreen } from '@dossierhq/react-components';
 import Head from 'next/head';
-import { useMemo, useState } from 'react';
+import { useMemo, useState, type JSX } from 'react';
 import { AppDossierProvider } from '../../contexts/AppDossierProvider';
 import { useUrlSearchParams } from '../../hooks/useUrlSearchParams';
 import { useWarningOnExit } from '../../hooks/useWarningOnExit';

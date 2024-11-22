@@ -24,21 +24,26 @@
     "@dossierhq/server": "~0.7.8",
     "better-sqlite3": "^11.5.0",
     "leaflet": "~1.9.4",
-    "next": "~14.2.15",
-    "react": "~18.3.1",
-    "react-dom": "~18.3.1"
+    "next": "15.0.3",
+    "react": "19.0.0-rc-66855b96-20241106",
+    "react-dom": "19.0.0-rc-66855b96-20241106"
   },
   "devDependencies": {
     "@dossierhq/typescript-generator": "~0.7.8",
     "@types/better-sqlite3": "^7.6.12",
-    "@types/react": "~18.3.12",
+    "@types/react": "npm:types-react@19.0.0-rc.1",
     "@typescript-eslint/eslint-plugin": "~8.15.0",
     "@typescript-eslint/parser": "~8.15.0",
     "eslint": "~8.57.1",
-    "eslint-config-next": "~14.2.15",
+    "eslint-config-next": "15.0.3",
     "prettier": "3.3.3",
     "tsx": "^4.19.2",
     "typescript": "~5.7.2"
   },
-  "packageManager": "pnpm@9.0.4"
+  "packageManager": "pnpm@9.0.4",
+  "pnpm": {
+    "overrides": {
+      "@types/react": "npm:types-react@19.0.0-rc.1"
+    }
+  }
 }

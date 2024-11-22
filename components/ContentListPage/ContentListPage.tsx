@@ -2,7 +2,7 @@ import type { Entity } from '@dossierhq/core';
 import { ContentListScreen } from '@dossierhq/react-components';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { useCallback } from 'react';
+import { useCallback, type JSX } from 'react';
 import { AppDossierProvider } from '../../contexts/AppDossierProvider';
 import { useUrlSearchParams } from '../../hooks/useUrlSearchParams';
 import { FrontendUrls } from '../../utils/FrontendUrls';

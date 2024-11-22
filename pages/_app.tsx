@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import type { JSX } from 'react';
 import '../styles/globals.css';
 
 interface Props {
