@@ -26,7 +26,7 @@ export function getPublishedClientForServerComponent(): Promise<AppPublishedDoss
 
 export async function getSessionContextForRequest(
   server: Server,
-  req: NextApiRequest,
+  _req: NextApiRequest,
 ): PromiseResult<
   { client: AppDossierClient; publishedClient: AppPublishedDossierClient },
   typeof ErrorType.NotAuthenticated

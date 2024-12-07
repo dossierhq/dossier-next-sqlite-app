@@ -30,15 +30,16 @@
   },
   "devDependencies": {
     "@dossierhq/typescript-generator": "~0.7.9",
+    "@eslint/eslintrc": "^3.2.0",
+    "@eslint/js": "^9.16.0",
     "@types/better-sqlite3": "^7.6.12",
     "@types/react": "npm:types-react@19.0.0-rc.1",
-    "@typescript-eslint/eslint-plugin": "~8.17.0",
-    "@typescript-eslint/parser": "~8.17.0",
-    "eslint": "~8.57.1",
+    "eslint": "~9.16.0",
     "eslint-config-next": "15.0.4",
     "prettier": "3.4.2",
     "tsx": "^4.19.2",
-    "typescript": "~5.7.2"
+    "typescript": "~5.7.2",
+    "typescript-eslint": "^8.17.0"
   },
   "packageManager": "pnpm@9.0.4",
   "pnpm": {
