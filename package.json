@@ -22,7 +22,7 @@
     "@dossierhq/leaflet": "~0.7.9",
     "@dossierhq/react-components": "~0.7.9",
     "@dossierhq/server": "~0.7.9",
-    "better-sqlite3": "^11.6.0",
+    "better-sqlite3": "^11.7.0",
     "leaflet": "~1.9.4",
     "next": "15.0.4",
     "react": "~19.0.0",
