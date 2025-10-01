@@ -24,7 +24,7 @@
     "@dossierhq/server": "~0.7.21",
     "better-sqlite3": "^12.4.1",
     "leaflet": "~1.9.4",
-    "next": "15.5.2",
+    "next": "15.5.4",
     "react": "~19.1.1",
     "react-dom": "~19.1.1"
   },
@@ -35,7 +35,7 @@
     "@types/better-sqlite3": "^7.6.13",
     "@types/react": "~19.1.17",
     "eslint": "~9.36.0",
-    "eslint-config-next": "15.5.2",
+    "eslint-config-next": "15.5.4",
     "prettier": "3.6.2",
     "tsx": "^4.20.5",
     "typescript": "~5.9.3",
