@@ -1,23 +1,12 @@
-import { FlatCompat } from '@eslint/eslintrc';
-import { default as js, default as pluginJs } from '@eslint/js';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { default as pluginJs } from '@eslint/js';
 import tsEslint from 'typescript-eslint';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-  allConfig: js.configs.all,
-});
+import nextPlugin from '@next/eslint-plugin-next';
 
 /** @import { Linter } from "eslint" */
 
 /** @type {Linter.Config[]} */
 const config = [
   { ignores: ['next.config.js', '.next/'] },
-  ...compat.extends('next', 'next/core-web-vitals'),
   pluginJs.configs.recommended,
   ...tsEslint.configs.recommended,
   {
@@ -32,6 +21,15 @@ const config = [
           argsIgnorePattern: '^_',
         },
       ],
+    },
+  },
+  {
+    plugins: {
+      '@next/next': nextPlugin,
+    },
+    rules: {
+      ...nextPlugin.configs.recommended.rules,
+      ...nextPlugin.configs['core-web-vitals'].rules,
     },
   },
 ];
