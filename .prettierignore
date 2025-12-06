@@ -1,5 +1,6 @@
 /.netlify/
 /.next/
+/.pnpm-store/
 /.vercel/
 /coverage/
-package-lock.json
+pnpm-lock.yaml

@@ -6,7 +6,8 @@ FROM node:20-alpine AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 COPY package.json package-lock.json ./
-RUN npm ci
+RUN corepack enable
+RUN pnpm install --frozen-lockfile
 
 # Rebuild the source code only when needed
 FROM node:20-alpine AS builder
@@ -14,7 +15,8 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-RUN npm ci
+RUN corepack enable
+RUN pnpm install --frozen-lockfile
 
 ENV NEXT_TELEMETRY_DISABLED 1
 
@@ -23,7 +25,7 @@ ENV NEXT_TELEMETRY_DISABLED 1
 # Example:
 # ARG NEXT_PUBLIC_EXAMPLE="value here"
 
-RUN npm run build
+RUN pnpm run build
 
 
 # Production image, copy all the files and run next

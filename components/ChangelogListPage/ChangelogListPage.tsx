@@ -1,6 +1,6 @@
 import { ChangelogListScreen } from '@dossierhq/react-components';
 import Head from 'next/head';
-import { AppAdminDossierProvider } from '../../contexts/AppAdminDossierProvider';
+import { AppDossierProvider } from '../../contexts/AppDossierProvider';
 import { useUrlSearchParams } from '../../hooks/useUrlSearchParams';
 import { DossierWebInterfacePage } from '../DossierWebInterfacePage/DossierWebInterfacePage';
 import { Navbar } from '../Navbar/Navbar';
@@ -10,7 +10,7 @@ export default function ChangelogListPage() {
 
   return (
     <DossierWebInterfacePage>
-      <AppAdminDossierProvider>
+      <AppDossierProvider>
         <Head>
           <title>Changelog | {process.env.NEXT_PUBLIC_SITE_NAME}</title>
         </Head>
@@ -19,7 +19,7 @@ export default function ChangelogListPage() {
           urlSearchParams={urlSearchParams}
           onUrlSearchParamsChange={onUrlSearchParamsChange}
         />
-      </AppAdminDossierProvider>
+      </AppDossierProvider>
     </DossierWebInterfacePage>
   );
 }

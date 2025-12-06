@@ -1,14 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type JSX } from 'react';
 import { EntitySampleDisplay } from '../components/EntitySampleDisplay/EntitySampleDisplay';
 import { Navbar } from '../components/Navbar/Navbar';
-import { usePublishedClient } from '../hooks/usePublishedClient';
+import { usePublishedDossierClient } from '../hooks/usePublishedDossierClient';
 import styles from '../styles/info-page.module.css';
-import type { AppPublishedClient } from '../types/SchemaTypes';
+import type { AppPublishedDossierClient } from '../types/SchemaTypes';
 
 export default function ClientSidePage(): JSX.Element {
-  const publishedClient = usePublishedClient();
+  const publishedClient = usePublishedDossierClient();
   const [sampleResult, setSampleResult] = useState<Awaited<
-    ReturnType<AppPublishedClient['getEntitiesSample']>
+    ReturnType<AppPublishedDossierClient['getEntitiesSample']>
   > | null>(null);
 
   useEffect(() => {

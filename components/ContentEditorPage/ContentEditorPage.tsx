@@ -1,7 +1,7 @@
 import { ContentEditorScreen } from '@dossierhq/react-components';
 import Head from 'next/head';
-import { useMemo, useState } from 'react';
-import { AppAdminDossierProvider } from '../../contexts/AppAdminDossierProvider';
+import { useMemo, useState, type JSX } from 'react';
+import { AppDossierProvider } from '../../contexts/AppDossierProvider';
 import { useUrlSearchParams } from '../../hooks/useUrlSearchParams';
 import { useWarningOnExit } from '../../hooks/useWarningOnExit';
 import { FrontendUrls } from '../../utils/FrontendUrls';
@@ -23,7 +23,7 @@ export default function ContentEditorPage(): JSX.Element {
 
   return (
     <DossierWebInterfacePage>
-      <AppAdminDossierProvider>
+      <AppDossierProvider>
         <Head>
           <title>Edit content | {process.env.NEXT_PUBLIC_SITE_NAME}</title>
         </Head>
@@ -33,7 +33,7 @@ export default function ContentEditorPage(): JSX.Element {
           onUrlSearchParamsChange={onUrlSearchParamsChange}
           onEditorHasChangesChange={setHasChanges}
         />
-      </AppAdminDossierProvider>
+      </AppDossierProvider>
     </DossierWebInterfacePage>
   );
 }

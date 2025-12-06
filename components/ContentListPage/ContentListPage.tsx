@@ -1,9 +1,9 @@
-import type { AdminEntity } from '@dossierhq/core';
+import type { Entity } from '@dossierhq/core';
 import { ContentListScreen } from '@dossierhq/react-components';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { useCallback } from 'react';
-import { AppAdminDossierProvider } from '../../contexts/AppAdminDossierProvider';
+import { useCallback, type JSX } from 'react';
+import { AppDossierProvider } from '../../contexts/AppDossierProvider';
 import { useUrlSearchParams } from '../../hooks/useUrlSearchParams';
 import { FrontendUrls } from '../../utils/FrontendUrls';
 import { DossierWebInterfacePage } from '../DossierWebInterfacePage/DossierWebInterfacePage';
@@ -18,13 +18,13 @@ export default function ContentListPage(): JSX.Element | null {
     [router],
   );
   const handleEntityOpen = useCallback(
-    (entity: AdminEntity) => router.push(FrontendUrls.contentEdit([entity.id])),
+    (entity: Entity) => router.push(FrontendUrls.contentEdit([entity.id])),
     [router],
   );
 
   return (
     <DossierWebInterfacePage>
-      <AppAdminDossierProvider>
+      <AppDossierProvider>
         <Head>
           <title>Content | {process.env.NEXT_PUBLIC_SITE_NAME}</title>
         </Head>
@@ -35,7 +35,7 @@ export default function ContentListPage(): JSX.Element | null {
           onCreateEntity={handleCreateEntity}
           onOpenEntity={handleEntityOpen}
         />
-      </AppAdminDossierProvider>
+      </AppDossierProvider>
     </DossierWebInterfacePage>
   );
 }

@@ -1,5 +1,6 @@
 import { PublishedContentDisplayScreen } from '@dossierhq/react-components';
 import Head from 'next/head';
+import type { JSX } from 'react';
 import { AppPublishedDossierProvider } from '../../contexts/AppPublishedDossierProvider';
 import { useUrlSearchParams } from '../../hooks/useUrlSearchParams';
 import { DossierWebInterfacePage } from '../DossierWebInterfacePage/DossierWebInterfacePage';

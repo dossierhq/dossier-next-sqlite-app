@@ -1,8 +1,8 @@
-import type { AdminClientJsonOperationArgs, ErrorType, Result } from '@dossierhq/core';
+import type { ErrorType, JsonDossierClientOperationArgs, Result } from '@dossierhq/core';
 import {
-  AdminClientModifyingOperations,
+  DossierClientModifyingOperations,
   decodeURLSearchParamsParam,
-  executeAdminClientOperationFromJson,
+  executeJsonDossierClientOperation,
   notOk,
   ok,
 } from '@dossierhq/core';
@@ -12,7 +12,7 @@ import { getSessionContextForRequest } from '../../../utils/BackendServerUtils';
 import { handleRequest, sendMethodNotAllowedError } from '../../../utils/HandlerUtils';
 import { getServerConnection } from '../../../utils/ServerUtils';
 
-export default async function adminOperationHandler(
+export default async function dossierOperationHandler(
   req: NextApiRequest,
   res: NextApiResponse,
 ): Promise<void> {
@@ -21,7 +21,7 @@ export default async function adminOperationHandler(
       if (!ENABLE_WEB_INTERFACE) {
         return notOk.BadRequest('Web interface is disabled');
       }
-      return executeAdminOperation(req);
+      return executeDossierOperation(req);
     });
   } else {
     sendMethodNotAllowedError(res, ['GET', 'PUT']);
@@ -30,8 +30,8 @@ export default async function adminOperationHandler(
 
 function getOperationArgs(
   req: NextApiRequest,
-): Result<AdminClientJsonOperationArgs, typeof ErrorType.BadRequest> {
-  let operationArgs: AdminClientJsonOperationArgs | undefined;
+): Result<JsonDossierClientOperationArgs, typeof ErrorType.BadRequest> {
+  let operationArgs: JsonDossierClientOperationArgs | undefined;
   if (req.method === 'GET') {
     operationArgs = decodeURLSearchParamsParam(req.query, 'args');
   } else {
@@ -43,7 +43,7 @@ function getOperationArgs(
   return ok(operationArgs);
 }
 
-async function executeAdminOperation(req: NextApiRequest) {
+async function executeDossierOperation(req: NextApiRequest) {
   const { operationName } = req.query;
   if (typeof operationName !== 'string') return notOk.BadRequest('Operation name not provided');
 
@@ -53,17 +53,17 @@ async function executeAdminOperation(req: NextApiRequest) {
   const { server } = await getServerConnection();
   const authResult = await getSessionContextForRequest(server, req);
   if (authResult.isError()) return authResult;
-  const { adminClient } = authResult.value;
+  const { client } = authResult.value;
 
-  const operationModifies = AdminClientModifyingOperations.has(operationName);
+  const operationModifies = DossierClientModifyingOperations.has(operationName);
   if (req.method === 'GET' && operationModifies) {
     return notOk.BadRequest('Operation modifies data, but GET was used');
   } else if (req.method === 'PUT' && !operationModifies) {
     return notOk.BadRequest('Operation does not modify data, but PUT was used');
   }
 
-  const result = await executeAdminClientOperationFromJson(
-    adminClient,
+  const result = await executeJsonDossierClientOperation(
+    client,
     operationName,
     operationResult.value,
   );

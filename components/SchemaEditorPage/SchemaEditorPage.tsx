@@ -1,7 +1,7 @@
 import { SchemaEditorScreen } from '@dossierhq/react-components';
 import Head from 'next/head';
 import { useState } from 'react';
-import { AppAdminDossierProvider } from '../../contexts/AppAdminDossierProvider';
+import { AppDossierProvider } from '../../contexts/AppDossierProvider';
 import { useWarningOnExit } from '../../hooks/useWarningOnExit';
 import { DossierWebInterfacePage } from '../DossierWebInterfacePage/DossierWebInterfacePage';
 import { Navbar } from '../Navbar/Navbar';
@@ -16,7 +16,7 @@ export default function SchemaEditorPage() {
 
   return (
     <DossierWebInterfacePage>
-      <AppAdminDossierProvider>
+      <AppDossierProvider>
         <Head>
           <title>Schema | {process.env.NEXT_PUBLIC_SITE_NAME}</title>
         </Head>
@@ -24,7 +24,7 @@ export default function SchemaEditorPage() {
           header={<Navbar current="schema" />}
           onEditorHasChangesChange={setHasChanges}
         />
-      </AppAdminDossierProvider>
+      </AppDossierProvider>
     </DossierWebInterfacePage>
   );
 }
