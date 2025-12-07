@@ -25,8 +25,8 @@
     "better-sqlite3": "^12.5.0",
     "leaflet": "~1.9.4",
     "next": "16.0.7",
-    "react": "19.2.0",
-    "react-dom": "19.2.0"
+    "react": "19.2.1",
+    "react-dom": "19.2.1"
   },
   "devDependencies": {
     "@dossierhq/typescript-generator": "~0.7.21",
@@ -35,11 +35,11 @@
     "@types/better-sqlite3": "^7.6.13",
     "@types/react": "19.2.7",
     "eslint": "~9.39.1",
-    "eslint-config-next": "16.0.6",
-    "prettier": "3.7.3",
+    "eslint-config-next": "16.0.7",
+    "prettier": "3.7.4",
     "tsx": "^4.21.0",
     "typescript": "~5.9.3",
-    "typescript-eslint": "^8.48.0"
+    "typescript-eslint": "^8.48.1"
   },
   "packageManager": "pnpm@9.0.4"
 }
