@@ -6,11 +6,24 @@ updates:
     directory: '/'
     schedule:
       interval: 'monthly'
+    cooldown:
+      default-days: 2
+
+  - package-ecosystem: "docker"
+    directories:
+      - "/"
+    schedule:
+      interval: "monthly"
+    cooldown:
+      default-days: 2
+
 
   - package-ecosystem: 'npm'
     directory: '/'
     schedule:
       interval: 'monthly'
+    cooldown:
+      default-days: 2
     open-pull-requests-limit: 10
     groups:
       dossier:
