@@ -33,7 +33,7 @@
     "@eslint/eslintrc": "^3.3.4",
     "@eslint/js": "^10.0.1",
     "@types/better-sqlite3": "^7.6.13",
-    "@types/react": "19.2.10",
+    "@types/react": "19.2.14",
     "eslint": "~10.0.2",
     "eslint-config-next": "16.1.6",
     "prettier": "3.8.1",
