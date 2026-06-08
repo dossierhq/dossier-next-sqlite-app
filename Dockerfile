@@ -1,7 +1,7 @@
 # Inspired by https://github.com/vercel/next.js/blob/canary/examples/with-docker/Dockerfile
 
 # Install dependencies only when needed
-FROM node:25.2.1-alpine3.22 AS deps
+FROM node:26.3.0-alpine3.22 AS deps
 # Check https://github.com/nodejs/docker-node/tree/main#nodealpine to understand why libc6-compat might be needed.
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
@@ -10,7 +10,7 @@ RUN npm install -g pnpm
 RUN pnpm install --frozen-lockfile
 
 # Rebuild the source code only when needed
-FROM node:25.2.1-alpine3.22 AS builder
+FROM node:26.3.0-alpine3.22 AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
@@ -29,7 +29,7 @@ RUN pnpm run build
 
 
 # Production image, copy all the files and run next
-FROM node:25.2.1-alpine3.22 AS runner
+FROM node:26.3.0-alpine3.22 AS runner
 WORKDIR /app
 
 ENV NEXT_TELEMETRY_DISABLED 1
@@ -49,7 +49,7 @@ USER nextjs
 CMD ["node", "server.js"]
 
 # Production image with readonly database
-FROM node:25.2.1-alpine3.22 AS runnerreadonly
+FROM node:26.3.0-alpine3.22 AS runnerreadonly
 WORKDIR /app
 
 COPY --from=runner /app ./
