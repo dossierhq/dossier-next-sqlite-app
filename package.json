@@ -24,7 +24,7 @@
     "@dossierhq/server": "~0.7.21",
     "better-sqlite3": "^13.0.3",
     "leaflet": "~1.9.4",
-    "next": "16.3.7",
+    "next": "16.3.8",
     "react": "19.3.0",
     "react-dom": "19.3.0"
   },
