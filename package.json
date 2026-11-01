@@ -25,8 +25,8 @@
     "better-sqlite3": "^13.0.3",
     "leaflet": "~1.9.4",
     "next": "16.4.1",
-    "react": "19.3.0",
-    "react-dom": "19.3.0"
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
   },
   "devDependencies": {
     "@dossierhq/typescript-generator": "~0.7.21",
